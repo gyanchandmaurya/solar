@@ -115,6 +115,68 @@
      </div>-->
     
   </div>
+
+   <!-- ************************** -->
+  <br>
+  <h2><u>Our Product Execution Process</u></h2>
+  <div class="accordion">
+    <div class="accordion-item">
+      <div class="accordion-title">
+        Step 1 (Site Visit) <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="accordion-content">
+        <p>We make sure our client gets all the information on the very first day of our visit with the POA of our work.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-title">
+        Step 2 (Design and Documentation) <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="accordion-content">
+        <p>Making a clear view about the way the whole project will look like &amp; PPA for Net metering Process.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-title">
+        Step 3 (Fabrication & Installation) <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="accordion-content">
+        <p>A complete frame of GI structure with bolts &amp; nuts for better strength &amp; Installation according to the Single Line Diagram (SLD) with proper chain of Strings &amp; Series.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-title">
+        Step 4 (Commissioning & Net Meter) <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="accordion-content">
+        <p>Final step when the entire solar system ready to connect with Net Meter along with PPA.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const items = document.querySelectorAll(".accordion-title");
+
+    items.forEach(item => {
+      item.addEventListener("click", () => {
+        const content = item.nextElementSibling;
+        item.classList.toggle("active");
+        content.classList.toggle("open");
+
+        // Close others (if only one should stay open)
+        document.querySelectorAll(".accordion-title").forEach(el => {
+          if (el !== item) {
+            el.classList.remove("active");
+            el.nextElementSibling.classList.remove("open");
+          }
+        });
+      });
+    });
+  </script>
+<!-- ************************** -->
 </section>
 
 
@@ -137,6 +199,7 @@
 
 </body>
 </html>
+
 
 
 
