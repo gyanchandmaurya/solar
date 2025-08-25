@@ -93,8 +93,7 @@ header nav ul li a:hover {
 }
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(220px, 1fr));
-/*   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
   margin-top: 30px;
 }
@@ -107,8 +106,8 @@ header nav ul li a:hover {
 }
 
 .card img {
-  width: 300px;
-  height: auto;   /* Fixed height */
+  width: 100%;
+  height: 250px;   /* Fixed height */
   object-fit: cover;  /* Crops nicely without distortion */
   transition: transform 0.4s;
 }
@@ -214,6 +213,7 @@ footer {
       }
     }
 /* Our Product Execution Process END */
+
 
 
 
