@@ -106,7 +106,7 @@ header nav ul li a:hover {
 }
 
 .card img {
-  width: 250px;
+  width: 300px;
   height: auto;   /* Fixed height */
   object-fit: cover;  /* Crops nicely without distortion */
   transition: transform 0.4s;
@@ -213,6 +213,7 @@ footer {
       }
     }
 /* Our Product Execution Process END */
+
 
 
 
