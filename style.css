@@ -259,7 +259,8 @@ footer {
 }
 
 .feature-box:hover .icon {
-    transform: rotate(12deg) scale(1.1);
+/*     transform: rotate(12deg) scale(1.1); */
+    transform: rotate(0deg) scale(0.5);
 }
 
 /* Numbers */
@@ -297,6 +298,7 @@ footer {
     }
 }
 /* ===== Feature Section ===== */
+
 
 
 
