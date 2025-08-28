@@ -150,6 +150,23 @@ footer {
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png");
   background-size: cover;
 }
+#get_quote{
+  height: 28px;
+  width: 90px;
+  border-radius: 0%;
+  border-top-right-radius: 15%;
+  border-bottom-right-radius: 15%;
+  border-left-width: 0px;
+  border-style: solid;
+  border-color: #004d40;
+  color: #004d40;
+  position: fixed;
+  bottom: 60px;
+  left: 10px;
+  z-index: 1000;
+  /* background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png"); */
+  background-size: cover;
+}
 
 
 /* Our Product Execution Process START */
@@ -298,6 +315,7 @@ footer {
     }
 }
 /* ===== Feature Section ===== */
+
 
 
 
