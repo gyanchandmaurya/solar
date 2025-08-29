@@ -154,8 +154,8 @@ footer {
   height: 26px;
   width: 115px;
   border-radius: 0%;
-  border-top-right-radius: 9%;
-  border-bottom-right-radius: 15%;
+  border-top-right-radius: 10%;
+  border-bottom-right-radius: 10%;
   border-left-width: 0px;
   border-style: solid;
   border-color: #004d40;
@@ -315,6 +315,7 @@ footer {
     }
 }
 /* ===== Feature Section ===== */
+
 
 
 
