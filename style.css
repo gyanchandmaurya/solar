@@ -151,10 +151,10 @@ footer {
   background-size: cover;
 }
 #get_quote{
-  height: 25px;
+  height: 26px;
   width: 115px;
   border-radius: 0%;
-  border-top-right-radius: 15%;
+  border-top-right-radius: 9%;
   border-bottom-right-radius: 15%;
   border-left-width: 0px;
   border-style: solid;
@@ -315,6 +315,7 @@ footer {
     }
 }
 /* ===== Feature Section ===== */
+
 
 
 
