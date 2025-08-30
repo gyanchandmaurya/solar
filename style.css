@@ -231,6 +231,24 @@ footer {
     }
 /* Our Product Execution Process END */
 
+/*-----------------------------------Youtube--------------------------*/
+.youtube{
+      display: flex; /* Enables flexbox layout */
+      justify-content: center; /* Adjust spacing between items */
+      align-items: center; /* Align items vertically */
+      flex-wrap: wrap; /* Makes it responsive */
+      gap: 5px; 
+  }
+  #youtube{
+      background-image: url(https://cdn.pixabay.com/photo/2021/08/17/17/49/youtube-6553743_640.png);
+      width: 170px; /* Width of the div */
+      height: 60px; /* Height of the div */
+      background-size: cover; /* Ensures the image covers the div */
+      background-position: center; /* Centers the image */
+      border-radius: 10px;
+  }
+/*-----------------------------------Youtube--------------------------*/
+
 
 /* ===== Feature Section ===== */
 .feature-section {
@@ -316,24 +334,96 @@ footer {
 }
 /* ===== Feature Section ===== */
 
+/*  Rooftop solar Installation Activities Section End */
+.on_grid{
+  max-height: 450px;
+}
+.rooftopsolar {
+  padding: 50px 0;
+  background: #f8f9fa;
+}
 
+.rooftopsolar h2 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #333;
+}
 
+/* Flexbox Row */
+.rooftopsolar .row {
+  display:inline-flex;
+  justify-content: space-between;
+  align-items: center;  /* ✅ makes all same height */
+  gap: 20px;
+}
 
+/* Common Box Style */
+.roofbox {
+  flex: 1; /* ✅ equal width */
+  display: flex;
+  flex-direction: column; /* keep content top-to-bottom */
+  justify-content: center;
+  padding: 25px 20px;
+  border-radius: 12px;
+  color: #fff;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+/* Images */
+.roofbox img {
+  max-width: 70px;
+  margin-bottom: 15px;
+}
 
+/* Titles */
+.roofbox h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
 
+/* Lists */
+.roofbox ul {
+  list-style:square;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  flex-grow: 1; /* ✅ fills empty space to balance height */
+}
 
+.roofbox ul li {
+  margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 1.6;
+  text-wrap:initial;
+}
 
+/* Hover Effect */
+.roofbox:hover {
+  transform: translateY(-8px);
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+}
 
+/* Individual Box Colors */
+.consumerbox {
+  background: #e74c3c; /* Red */
+}
 
+.vendorbox {
+  background: #27ae60; /* Green */
+}
 
+.discombox {
+  background: #2980b9; /* Blue */
+}
 
-
-
-
-
-
-
-
-
-
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+  .rooftopsolar .row {
+    flex-direction: column;
+  }
+}
+ /* Rooftop solar Installation Activities Section End */
