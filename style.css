@@ -70,7 +70,7 @@ header nav ul li a:hover {
 
 /* About */
 .about, .contact {
-  padding: 60px 20px;
+  padding: 20px 20px;
   text-align: center;
 }
 .about h2, .products h2, .contact h2 {
@@ -428,6 +428,7 @@ footer {
   }
 }
  /* Rooftop solar Installation Activities Section End */
+
 
 
 
