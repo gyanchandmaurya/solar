@@ -120,6 +120,17 @@ a {
   text-decoration: none;
 }
 
+.price{
+  font-weight: 700;
+  color: #041e3b;
+  border: solid;
+  border-left: #004d40;
+  border-right: #004d40;
+  border-bottom: #004d40;
+  border-radius: 0%;
+  border-color: #ffd900;
+}
+
 /* Footer */
 footer {
   background: #004d40;
@@ -428,6 +439,7 @@ footer {
   }
 }
  /* Rooftop solar Installation Activities Section End */
+
 
 
 
