@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Solar Business</title>
+  <link rel="stylesheet" href="style_form.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Contact Us for Solar Solutions</h2>
+    <form id="contact-form" method="POST" action="https://formspree.io/f/xkgvarwz">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="mobile">Mobile No.:</label>
+        <input type="text" id="mobile" name="mobile" required>
+      </div>
+
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+      </div>
+
+      <div class="form-group">
+        <label for="pin">PIN Code:</label>
+        <input type="text" id="pin" name="pin" required>
+      </div>
+
+      <div class="form-group">
+        <label for="siteUsage">Site Usage:</label>
+        <select id="siteUsage" name="siteUsage" required>
+          <option value="Domestic">Domestic</option>
+          <option value="School">School</option>
+          <option value="Office">Office</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="bill">Monthly Electricity Bill (in INR):</label>
+        <input type="number" id="bill" name="bill" required>
+      </div>
+
+      <button type="submit" id="submit-btn">Submit</button>
+    </form>
+  </div>
+
+  <script src="script_form.js"></script>
+</body>
+</html>
