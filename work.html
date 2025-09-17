@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Solar Power Generation Animation</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --panel:#0ea5a4;
+      --sun:#ffcc33;
+      --inverter:#f97316;
+      --battery:#60a5fa;
+      --grid:#a78bfa;
+      --wire:#94a3b8;
+      --text:#e6eef8;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,Segoe UI,Arial;background:linear-gradient(180deg,var(--bg) 0%, #071126 100%);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+
+    .stage{width:1100px;max-width:96vw;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px;padding:18px;box-shadow:0 6px 30px rgba(2,6,23,0.7);}
+    .header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+    .title{font-size:20px;font-weight:700}
+    .controls{display:flex;gap:8px}
+    button{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text);padding:6px 10px;border-radius:8px;cursor:pointer}
+    .canvas{position:relative;height:520px;border-radius:8px;overflow:hidden;background:linear-gradient(180deg,#05203a 0%, #0a1a2a 70%);}
+
+    /* Layout zones */
+    .sun-zone{position:absolute;left:40px;top:40px;width:160px;height:160px;display:flex;align-items:center;justify-content:center}
+    .panels-zone{position:absolute;left:220px;bottom:50px;display:flex;gap:18px;align-items:flex-end}
+    .inverter-zone{position:absolute;left:560px;bottom:120px;width:120px;height:90px;display:flex;align-items:center;justify-content:center}
+    .battery-zone{position:absolute;left:720px;bottom:60px;width:140px;height:120px;display:flex;align-items:center;justify-content:center}
+    .grid-zone{position:absolute;right:40px;top:40px;width:160px;height:160px;display:flex;align-items:center;justify-content:center}
+    .load-zone{position:absolute;right:80px;bottom:60px;width:120px;height:120px;display:flex;align-items:center;justify-content:center}
+
+    /* Sun styles */
+    .sun{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #fff6b3, var(--sun));box-shadow:0 0 60px rgba(255,204,51,0.55);position:relative;display:flex;align-items:center;justify-content:center;transform-origin:center}
+    .sun .rays{position:absolute;inset:-18px;border-radius:50%}
+    .sun .rays:before,.sun .rays:after{content:'';position:absolute;left:50%;top:50%;transform-origin:center;background:transparent}
+    .sun .rays:before{width:220px;height:220px;border-radius:50%;box-shadow:0 0 60px rgba(255,200,45,0.2);transform:translate(-50%,-50%)}
+    @keyframes sun-pulse{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
+    .sun{animation:sun-pulse 4s ease-in-out infinite}
+
+    /* Panels */
+    .panel{width:140px;height:90px;background:linear-gradient(180deg,#053e3f 0%, #036e78 100%);border-radius:6px;box-shadow:0 6px 18px rgba(2,6,23,0.7);position:relative;overflow:hidden;border:3px solid rgba(255,255,255,0.04)}
+    .panel .cell{position:absolute;inset:8px;border-radius:4px;background:repeating-linear-gradient(90deg, rgba(0,0,0,0.08) 0 8px, rgba(255,255,255,0.02) 8px 16px);}
+    .panel .stand{position:absolute;left:50%;transform:translateX(-50%);bottom:-20px;width:10px;height:36px;background:linear-gradient(180deg,#2b2b2b,#111);border-radius:4px}
+
+    /* Inverter */
+    .inverter{width:120px;height:80px;border-radius:10px;background:linear-gradient(180deg,#fff 0%, #f7f7f7 30%, #fff);box-shadow:0 8px 20px rgba(10,10,10,0.4);border:2px solid rgba(0,0,0,0.06);display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .inverter .label{font-size:12px;font-weight:700;color:#1f2937}
+    .inverter .status{font-size:11px;margin-top:6px;color:#064e3b}
+
+    /* Battery */
+    .battery{width:120px;height:80px;border-radius:10px;background:linear-gradient(180deg,#0ea5ff 0%, #60a5fa 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;box-shadow:0 10px 30px rgba(6,78,100,0.18)}
+    .battery .level{width:86%;height:14px;border-radius:8px;background:rgba(255,255,255,0.12);overflow:hidden}
+    .battery .level .fill{height:100%;width:60%;border-radius:8px;background:linear-gradient(90deg,#fff,#dbeafe);transition:width 800ms ease}
+
+    /* Grid / Utility */
+    .grid{width:140px;height:100px;border-radius:10px;background:linear-gradient(180deg,#f3f0ff,#efe7ff);display:flex;align-items:center;justify-content:center;flex-direction:column;color:#3c1361}
+
+    .label-bubble{position:absolute;background:rgba(255,255,255,0.04);padding:6px 8px;border-radius:8px;font-size:12px;border:1px solid rgba(255,255,255,0.02)}
+
+    /* Wires and energy particles */
+    .wire{position:absolute;height:4px;background:linear-gradient(90deg,var(--wire),rgba(255,255,255,0.06));border-radius:4px}
+    .particle{position:absolute;width:8px;height:8px;border-radius:50%;box-shadow:0 0 8px rgba(255,255,255,0.8);pointer-events:none}
+
+    /* arrows */
+    .arrow{width:0;height:0;border-style:solid;opacity:0.9}
+
+    /* small responsive tweak */
+    @media (max-width:720px){.stage{padding:12px}.canvas{height:720px}}
+
+    /* decorative load */
+    .load{width:80px;height:80px;border-radius:10px;background:linear-gradient(180deg,#fff,#f2f4f8);display:flex;align-items:center;justify-content:center;color:#0b1220;box-shadow:0 6px 18px rgba(0,0,0,0.35)}
+
+    /* animation helpers */
+    .pulse-strong{animation:glow 1.5s ease-in-out infinite}
+    @keyframes glow{0%{box-shadow:0 0 0 rgba(255,255,255,0)}50%{box-shadow:0 0 24px rgba(255,255,255,0.06)}100%{box-shadow:0 0 0 rgba(255,255,255,0)}}
+
+    /* Legend */
+    .legend{display:flex;gap:12px;align-items:center}
+    .legend .item{display:flex;gap:8px;align-items:center;font-size:12px}
+    .swatch{width:12px;height:12px;border-radius:3px}
+
+  </style>
+</head>
+<body>
+  <div class="stage" role="region" aria-label="Solar power system animated diagram">
+    <div class="header">
+      <div class="title">Solar power generation - animated process</div>
+      <div class="controls">
+        <button id="startBtn">Start</button>
+        <button id="pauseBtn">Pause</button>
+        <button id="resetBtn">Reset</button>
+      </div>
+    </div>
+
+    <div class="canvas" id="canvas">
+      <!-- Sun -->
+      <div class="sun-zone">
+        <div class="sun" id="sun" title="Sun (energy source)">
+          <div style="font-weight:800">☀</div>
+          <div class="rays"></div>
+        </div>
+        <div class="label-bubble" style="left:26px;top:140px">Sun (Solar Radiation)</div>
+      </div>
+
+      <!-- Panels -->
+      <div class="panels-zone" id="panelsZone">
+        <div class="panel" aria-hidden="false" id="panel1">
+          <div class="cell"></div>
+          <div class="stand"></div>
+        </div>
+        <div class="panel" id="panel2">
+          <div class="cell"></div>
+          <div class="stand"></div>
+        </div>
+        <div class="panel" id="panel3">
+          <div class="cell"></div>
+          <div class="stand"></div>
+        </div>
+        <div class="label-bubble" style="left:40px;bottom:120px">Solar PV Panels (DC generation)</div>
+      </div>
+
+      <!-- Inverter -->
+      <div class="inverter-zone">
+        <div class="inverter" id="inverter">
+          <div class="label">Inverter</div>
+          <div class="status" id="invStatus">Converting DC → AC</div>
+        </div>
+        <div class="label-bubble" style="left:540px;bottom:18px">Inverter (DC to AC)</div>
+      </div>
+
+      <!-- Battery -->
+      <div class="battery-zone">
+        <div class="battery" id="battery">
+          <div style="font-weight:700">Battery</div>
+          <div class="level" aria-hidden="true" style="margin-top:8px"><div class="fill" id="batFill"></div></div>
+        </div>
+        <div class="label-bubble" style="left:720px;bottom:12px">Battery (Energy Storage)</div>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid-zone">
+        <div class="grid" id="grid">
+          <div style="font-weight:700">Grid</div>
+          <div style="font-size:12px;margin-top:6px">Utility</div>
+        </div>
+        <div class="label-bubble" style="right:170px;top:140px">Grid / Utility</div>
+      </div>
+
+      <!-- Load -->
+      <div class="load-zone">
+        <div class="load" id="load">
+          <div style="text-align:center">Home<br/>Load</div>
+        </div>
+        <div class="label-bubble" style="right:82px;bottom:12px">End User Load</div>
+      </div>
+
+      <!-- Wires (visual guides) -->
+      <div id="wires" aria-hidden="true">
+        <!-- Panel to Inverter -->
+        <div class="wire" id="wirePanelsToInv" style="left:420px;bottom:150px;width:120px"></div>
+        <!-- Inverter to Battery -->
+        <div class="wire" id="wireInvToBat" style="left:680px;bottom:180px;width:40px"></div>
+        <!-- Inverter to Load -->
+        <div class="wire" id="wireInvToLoad" style="left:640px;bottom:160px;width:200px"></div>
+        <!-- Inverter to Grid (export) -->
+        <div class="wire" id="wireInvToGrid" style="left:700px;top:120px;width:240px;transform:rotate(10deg)"></div>
+      </div>
+
+      <!-- Legend -->
+      <div style="position:absolute;left:18px;bottom:18px;display:flex;gap:10px;align-items:center">
+        <div class="legend">
+          <div class="item"><div class="swatch" style="background:var(--sun)"></div>Sun</div>
+          <div class="item"><div class="swatch" style="background:var(--panel)"></div>PV Panels</div>
+          <div class="item"><div class="swatch" style="background:var(--inverter)"></div>Inverter</div>
+          <div class="item"><div class="swatch" style="background:var(--battery)"></div>Battery</div>
+          <div class="item"><div class="swatch" style="background:var(--grid)"></div>Grid</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Simple animation controller for a flow of "energy particles" showing power path
+    const canvas = document.getElementById('canvas');
+    const startBtn = document.getElementById('startBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const batFill = document.getElementById('batFill');
+    const invStatus = document.getElementById('invStatus');
+
+    let running = false;
+    let particles = [];
+    let lastTime = null;
+    let batteryLevel = 60; // percent
+
+    function createParticle(x,y,color,velocity){
+      const el = document.createElement('div');
+      el.className = 'particle';
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+      el.style.background = color;
+      el.dataset.vx = velocity.vx;
+      el.dataset.vy = velocity.vy;
+      canvas.appendChild(el);
+      particles.push(el);
+      return el;
+    }
+
+    function reset(){
+      // remove particles
+      particles.forEach(p=>p.remove());
+      particles = [];
+      batteryLevel = 60;
+      updateBatteryUI();
+      invStatus.textContent = 'Idle';
+      running = false;
+      cancelAnimationFrame(loopId);
+    }
+
+    function updateBatteryUI(){
+      batFill.style.width = batteryLevel + '%';
+    }
+
+    function start(){
+      if(running) return;
+      running = true;
+      invStatus.textContent = 'Converting DC → AC';
+      lastTime = performance.now();
+      loopId = requestAnimationFrame(loop);
+    }
+
+    function pause(){
+      running = false;
+      invStatus.textContent = 'Paused';
+      cancelAnimationFrame(loopId);
+    }
+
+    startBtn.addEventListener('click', start);
+    pauseBtn.addEventListener('click', pause);
+    resetBtn.addEventListener('click', ()=>{reset(); start();});
+
+    // Coordinates for anchors (relative to canvas)
+    function getRect(el){
+      const r = el.getBoundingClientRect();
+      const c = canvas.getBoundingClientRect();
+      return {x: r.left - c.left + r.width/2, y: r.top - c.top + r.height/2};
+    }
+
+    function spawnSunToPanels(){
+      const sun = document.getElementById('sun');
+      const panel = document.getElementById('panel2');
+      const s = getRect(sun);
+      const p = getRect(panel);
+      for(let i=0;i<6;i++){
+        const vx = (p.x - s.x)/180 + (Math.random()-0.5)*0.1;
+        const vy = (p.y - s.y)/180 + (Math.random()-0.5)*0.1;
+        createParticle(s.x,s.y,'rgba(255,230,120,0.95)',{vx,vy});
+      }
+    }
+
+    function spawnPanelsToInverter(){
+      const panel = document.getElementById('panel2');
+      const inv = document.getElementById('inverter');
+      const p = getRect(panel);
+      const v = getRect(inv);
+      for(let i=0;i<4;i++){
+        const vx = (v.x - p.x)/160 + (Math.random()-0.5)*0.06;
+        const vy = (v.y - p.y)/160 + (Math.random()-0.5)*0.06;
+        createParticle(p.x,p.y,'rgba(102,255,204,0.95)',{vx,vy});
+      }
+    }
+
+    function spawnInverterToBatteryAndLoad(){
+      const inv = document.getElementById('inverter');
+      const bat = document.getElementById('battery');
+      const load = document.getElementById('load');
+      const v = getRect(inv);
+      const b = getRect(bat);
+      const l = getRect(load);
+      // to battery
+      createParticle(v.x,v.y,'rgba(255,255,255,0.95)',{vx:(b.x-v.x)/180, vy:(b.y-v.y)/180});
+      // to load
+      createParticle(v.x,v.y,'rgba(180,220,255,0.95)',{vx:(l.x-v.x)/220, vy:(l.y-v.y)/220});
+    }
+
+    function maybeSpawnGridExport(){
+      // small chance to export to grid
+      if(Math.random()<0.4){
+        const inv = document.getElementById('inverter');
+        const grid = document.getElementById('grid');
+        const v = getRect(inv);
+        const g = getRect(grid);
+        createParticle(v.x,v.y,'rgba(167,139,250,0.95)',{vx:(g.x-v.x)/260, vy:(g.y-v.y)/260});
+      }
+    }
+
+    // main loop
+    let loopId;
+    function loop(t){
+      const dt = (t - lastTime)/16.67; // approx frames
+      lastTime = t;
+
+      // periodically spawn particles representing energy flow
+      if(Math.random() < 0.18) spawnSunToPanels();
+      if(Math.random() < 0.16) spawnPanelsToInverter();
+      if(Math.random() < 0.12) spawnInverterToBatteryAndLoad();
+      maybeSpawnGridExport();
+
+      // update particles
+      for(let i=particles.length-1;i>=0;i--){
+        const p = particles[i];
+        let x = parseFloat(p.style.left);
+        let y = parseFloat(p.style.top);
+        const vx = parseFloat(p.dataset.vx);
+        const vy = parseFloat(p.dataset.vy);
+        const nx = x + vx * dt * 6;
+        const ny = y + vy * dt * 6;
+        p.style.left = nx + 'px';
+        p.style.top = ny + 'px';
+
+        // fade and remove when out of bounds
+        const cRect = canvas.getBoundingClientRect();
+        if(nx < -50 || nx > cRect.width + 50 || ny < -50 || ny > cRect.height + 50){
+          p.remove();
+          particles.splice(i,1);
+        }
+      }
+
+      // Simulate battery charge/discharge when running
+      if(running){
+        // small variability to simulate charging/discharging
+        const delta = (Math.random()*0.4 + 0.05);
+        // when sun strong -> panels produce and inverter may charge battery
+        if(Math.random() < 0.6) batteryLevel = Math.min(100, batteryLevel + delta);
+        else batteryLevel = Math.max(0, batteryLevel - delta*0.8);
+        updateBatteryUI();
+      }
+
+      loopId = requestAnimationFrame(loop);
+    }
+
+    // start automatically on load
+    window.addEventListener('load', ()=>{
+      updateBatteryUI();
+      start();
+    });
+
+    // Accessibility: keyboard shortcuts
+    window.addEventListener('keydown',(e)=>{
+      if(e.key === ' '){ if(running) pause(); else start(); e.preventDefault(); }
+      if(e.key === 'r') reset();
+    });
+
+    // note: this simple demo focuses on visual explanation rather than engineering accuracy.
+
+  </script>
+</body>
+</html>
