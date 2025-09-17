@@ -1,0 +1,325 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>On‑Grid Solar System — Step‑by‑Step Animation</title>
+  <style>
+    :root{
+      --bg:#f4f7fb; --card:#ffffff; --muted:#6b7280; --accent:#0ea5a4; --sun:#ffb703; --dc:#2b8cff; --ac:#16a34a; --excess:#ef4444;
+    }
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:20px; background:var(--bg); color:#111}
+    .wrap{max-width:1000px; margin:0 auto; background:var(--card); border-radius:12px; padding:18px; box-shadow:0 10px 30px rgba(16,24,40,0.06)}
+    .top{display:flex; gap:12px; align-items:center; justify-content:space-between}
+    .controls{display:flex; gap:8px; align-items:center}
+    button{padding:8px 12px; border-radius:8px; border:1px solid #e6eef2; background:white; cursor:pointer}
+    button.primary{background:var(--accent); color:#fff; border:none}
+    .stage{font-weight:700; font-size:15px; text-align:center; margin:12px 0}
+    .canvas{width:100%; height:420px}/* SVG component visuals */
+.box{fill:#fff; stroke:#2d3748; stroke-width:2}
+.panel{fill:#0b3d91; stroke:#04204a; stroke-width:2}
+.sun{fill:var(--sun); stroke:#ff9f1c; stroke-width:2}
+.rays rect{fill:#ffd166}
+
+/* path styling */
+.path-energy{stroke:var(--sun); stroke-width:8; stroke-linecap:round; fill:none}
+.path-dc{stroke:var(--dc); stroke-width:8; stroke-linecap:round; fill:none}
+.path-ac{stroke:var(--ac); stroke-width:8; stroke-linecap:round; fill:none}
+.path-excess{stroke:var(--excess); stroke-width:5; stroke-linecap:round; fill:none; stroke-dasharray:10 8}
+
+/* animated dot */
+.dot{fill:#fff; stroke:#333; stroke-width:1}
+
+/* dim & highlight states */
+.dim{opacity:0.25; transition:opacity .35s}
+.highlight{filter:drop-shadow(0 8px 20px rgba(14,165,164,0.16)); transform-origin:center}
+
+.explain{margin-top:12px; padding:12px; border-radius:8px; background:#fbfcff; border:1px solid #eef4ff; font-size:14px; color:#0f172a}
+
+/* responsive */
+@media(max-width:880px){ .canvas{height:360px} }
+@media(max-width:520px){ .top{flex-direction:column; align-items:stretch} }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="controls">
+        <button id="prevBtn">◀ Prev</button>
+        <button id="nextBtn" class="primary">Next ▶</button>
+        <button id="playBtn">Play</button>
+        <button id="resetBtn">Reset</button>
+      </div>
+      <div style="text-align:right; color:var(--muted); font-size:13px">Interactive demo — step through how an on‑grid solar system works</div>
+    </div><div class="stage" id="stageLabel">Step 1 of 3 — Sunlight hits the solar panel</div>
+
+<div class="canvas">
+  <!-- SVG scene -->
+  <svg id="scene" viewBox="0 0 1000 420" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- SUN (left) -->
+    <g id="sunGroup" transform="translate(120,110)">
+      <circle id="sun" class="sun" cx="0" cy="0" r="44" />
+      <g id="rays" class="rays">
+        <!-- generate 12 rays -->
+        <g transform="rotate(0)"><rect x="58" y="-4" width="26" height="8" rx="4" /></g>
+        <g transform="rotate(30)"><rect x="58" y="-4" width="26" height="8" rx="4" /></g>
+        <g transform="rotate(60)"><rect x="58" y="-4" width="26" height="8" rx="4" /></g>
+        <g transform="rotate(90)"><rect x="58" y="-4" width="26" height="8" rx="4" /></g>
+        <g transform="rotate(120)"><rect x="58" y="-4" width="26" height="8" rx="4" /></g>
+        <g transform="rotate(150)"><rect x="58" y="-4" width="26" height="8" rx="4" /></g>
+        <g transform="rotate(180)"><rect x="58" y="-4" width="26" height="8" rx="4" /></g>
+        <g transform="rotate(210)"><rect x="58" y="-4" width="26" height="8" rx="4" /></g>
+        <g transform="rotate(240)"><rect x="58" y="-4" width="26" height="8" rx="4" /></g>
+        <g transform="rotate(270)"><rect x="58" y="-4" width="26" height="8" rx="4" /></g>
+        <g transform="rotate(300)"><rect x="58" y="-4" width="26" height="8" rx="4" /></g>
+        <g transform="rotate(330)"><rect x="58" y="-4" width="26" height="8" rx="4" /></g>
+      </g>
+    </g>
+
+    <!-- Solar panel (center-left) -->
+    <g id="panelGroup" transform="translate(300,220)">
+      <rect id="panel" x="-100" y="-48" width="200" height="96" rx="10" class="panel" />
+      <!-- panel grid lines -->
+      <g stroke="#0ea5ff" stroke-opacity="0.18">
+        <!-- verticals -->
+        <line x1="-70" y1="-35" x2="-70" y2="35" />
+        <line x1="-30" y1="-35" x2="-30" y2="35" />
+        <line x1="10" y1="-35" x2="10" y2="35" />
+        <line x1="50" y1="-35" x2="50" y2="35" />
+        <!-- horizontals -->
+        <line x1="-85" y1="-10" x2="85" y2="-10" />
+        <line x1="-85" y1="12" x2="85" y2="12" />
+      </g>
+    </g>
+
+    <!-- Inverter (center-right) -->
+    <g id="inverterGroup" transform="translate(600,200)">
+      <rect id="inverter" class="box" x="-70" y="-45" width="140" height="90" rx="12" />
+      <text x="0" y="4" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">Inverter</text>
+      <text x="0" y="23" text-anchor="middle" font-size="11" fill="#475569">DC → AC</text>
+    </g>
+
+    <!-- Load (top-right) -->
+    <g id="loadGroup" transform="translate(780,150)">
+      <rect id="loadBox" class="box" x="-55" y="-45" width="110" height="90" rx="10" />
+      <text x="0" y="4" text-anchor="middle" font-size="13" fill="#0f172a">Load (Appliances)</text>
+    </g>
+
+    <!-- Grid (bottom-right) -->
+    <g id="gridGroup" transform="translate(780,310)">
+      <rect id="gridBox" class="box" x="-55" y="-30" width="110" height="60" rx="8" />
+      <text x="0" y="4" text-anchor="middle" font-size="13" fill="#0f172a">Utility Grid</text>
+    </g>
+
+    <!-- Paths (invisible initially; we'll reveal them during animation) -->
+    <!-- Sun -> Panel -->
+    <path id="pathSunPanel" d="M170,100 C220,140 260,170 300,190" class="path-energy" stroke-linecap="round" />
+
+    <!-- Panel -> Inverter (DC) -->
+    <path id="pathPanelInv" d="M340,200 C420,200 520,200 540,200" class="path-dc" />
+
+    <!-- Inverter -> Load (AC) -->
+    <path id="pathInvLoad" d="M660,200 C700,170 740,150 780,150" class="path-ac" />
+
+    <!-- Panel -> Grid (Excess) -->
+    <path id="pathPanelGrid" d="M320,240 C420,260 560,290 730,305" class="path-excess" />
+
+    <!-- moving dots (hidden initially) -->
+    <circle id="dot1" class="dot" r="7" visibility="hidden" />
+    <circle id="dot2" class="dot" r="7" visibility="hidden" />
+    <circle id="dot3" class="dot" r="7" visibility="hidden" />
+
+    <!-- small captions near components for mobile clarity -->
+    <text x="120" y="210" font-size="12" fill="#111">Sun (solar radiation)</text>
+    <text x="300" y="320" font-size="12" fill="#111" text-anchor="middle">Solar Panel</text>
+
+  </svg>
+</div>
+
+<div class="explain" id="explain">
+  <strong>Overview:</strong> Sunlight (photons) hits the solar panel and gets converted to DC electricity. DC flows to the inverter which converts it to AC for your home; any surplus energy is exported to the utility grid. Use the controls above to step through the animations.
+</div>
+
+  </div>  <script>
+    // DOM references
+    const stageLabel = document.getElementById('stageLabel');
+    const explain = document.getElementById('explain');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const playBtn = document.getElementById('playBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    const svg = document.getElementById('scene');
+    const pathSunPanel = document.getElementById('pathSunPanel');
+    const pathPanelInv = document.getElementById('pathPanelInv');
+    const pathInvLoad = document.getElementById('pathInvLoad');
+    const pathPanelGrid = document.getElementById('pathPanelGrid');
+    const dot1 = document.getElementById('dot1');
+    const dot2 = document.getElementById('dot2');
+    const dot3 = document.getElementById('dot3');
+
+    const sunGroup = document.getElementById('sunGroup');
+    const panel = document.getElementById('panel');
+    const inverter = document.getElementById('inverter');
+    const loadBox = document.getElementById('loadBox');
+    const gridBox = document.getElementById('gridBox');
+    const rays = document.getElementById('rays');
+
+    // Hide paths initially by setting strokeDashoffset to full length (will be revealed on animation)
+    function hidePath(path){
+      const L = path.getTotalLength();
+      path.style.strokeDasharray = L;
+      path.style.strokeDashoffset = L;
+      path.style.opacity = 0.95;
+    }
+    [pathSunPanel, pathPanelInv, pathInvLoad, pathPanelGrid].forEach(hidePath);
+
+    function hideAllDots(){ [dot1,dot2,dot3].forEach(d => d.setAttribute('visibility','hidden')); }
+    hideAllDots();
+
+    // animate a dot moving along an SVG path while revealing the path
+    function animateAlongPath(dot, path, duration=1000, color=null){
+      return new Promise(resolve => {
+        const L = path.getTotalLength();
+        path.style.strokeDasharray = L;
+        let start = null;
+        dot.setAttribute('visibility','visible');
+        if(color) dot.setAttribute('fill', color);
+
+        function step(ts){
+          if(!start) start = ts;
+          const t = Math.min(1, (ts-start)/duration);
+          const dist = t * L;
+          const p = path.getPointAtLength(dist);
+          dot.setAttribute('cx', p.x);
+          dot.setAttribute('cy', p.y);
+          // reveal path progressively
+          path.style.strokeDashoffset = Math.max(0, L - dist);
+          if(t < 1) requestAnimationFrame(step);
+          else resolve();
+        }
+        requestAnimationFrame(step);
+      });
+    }
+
+    // small pulsing animation for sun rays
+    let raysAnimId = null;
+    function pulseRays(){
+      let t0 = performance.now();
+      if(raysAnimId) cancelAnimationFrame(raysAnimId);
+      function frame(ts){
+        const t = (ts - t0) / 600; // speed
+        const op = 0.6 + 0.4 * Math.abs(Math.sin(t));
+        rays.querySelectorAll('rect').forEach(r => r.setAttribute('opacity', op));
+        raysAnimId = requestAnimationFrame(frame);
+      }
+      raysAnimId = requestAnimationFrame(frame);
+    }
+    function stopRays(){ if(raysAnimId) cancelAnimationFrame(raysAnimId); rays.querySelectorAll('rect').forEach(r=> r.setAttribute('opacity',0.95)); }
+
+    // Steps implementation
+    let currentStep = 1; const maxStep = 3; let playing = false; let playTimer = null;
+
+    async function goToStep(s){
+      // reset visuals
+      [panel, inverter, loadBox, gridBox].forEach(el => el.classList.remove('highlight'));
+      hideAllDots();
+      [pathSunPanel, pathPanelInv, pathInvLoad, pathPanelGrid].forEach(hidePath);
+      stopRays();
+
+      currentStep = Math.max(1, Math.min(maxStep, s));
+      stageLabel.textContent = `Step ${currentStep} of ${maxStep} — ${stepTitles[currentStep-1]}`;
+      explain.innerHTML = stepExplanations[currentStep-1];
+
+      if(currentStep === 1){
+        // Sunlight -> Panel
+        pulseRays();
+        panel.classList.remove('dim'); panel.classList.add('highlight');
+        await animateAlongPath(dot1, pathSunPanel, 1400, '#ffdf6e');
+        stopRays();
+        // keep panel highlighted
+      }
+      else if(currentStep === 2){
+        // Panel -> Inverter -> Load
+        panel.classList.add('highlight'); inverter.classList.add('highlight');
+        // show DC from panel to inverter
+        await animateAlongPath(dot2, pathPanelInv, 900, '#2b8cff');
+        // flash inverter to represent conversion
+        await inverterFlash();
+        // AC from inverter to load
+        inverter.classList.remove('dim'); loadBox.classList.add('highlight');
+        await animateAlongPath(dot3, pathInvLoad, 900, '#16a34a');
+      }
+      else if(currentStep === 3){
+        // Excess flow -> Grid
+        panel.classList.add('highlight'); gridBox.classList.add('highlight');
+        // animate some energy out to grid (red)
+        await animateAlongPath(dot1, pathPanelGrid, 1400, '#ef4444');
+      }
+    }
+
+    function inverterFlash(){
+      return new Promise(resolve => {
+        const el = inverter;
+        let flashes = 0;
+        const id = setInterval(()=>{
+          el.style.filter = (flashes % 2 === 0) ? 'drop-shadow(0 12px 24px rgba(22,163,74,0.15))' : '';
+          flashes++;
+          if(flashes>4){ clearInterval(id); el.style.filter=''; resolve(); }
+        },160);
+      });
+    }
+
+    const stepTitles = [
+      'Sunlight hits the solar panel',
+      'Panel produces DC → Inverter converts to AC and powers load',
+      'Excess electricity is exported to the grid'
+    ];
+    const stepExplanations = [
+      '<strong>Step 1:</strong> Photons from the sun hit the solar panel. The panel converts sunlight into DC electricity (photoelectric effect).',
+      '<strong>Step 2:</strong> DC from the panels flows to the inverter which converts DC to AC for household appliances. The inverter briefly "converts" (visual flash) as energy moves to the load.',
+      '<strong>Step 3:</strong> If production exceeds consumption, the surplus electricity flows from the panels/inverter to the utility grid (export).'
+    ];
+
+    // Controls
+    prevBtn.addEventListener('click', ()=>{ if(playing){ togglePlay(false); } goToStep(currentStep-1); });
+    nextBtn.addEventListener('click', ()=>{ if(playing){ togglePlay(false); } goToStep(currentStep+1); });
+    resetBtn.addEventListener('click', ()=>{ if(playing){ togglePlay(false); } resetAll(); });
+    playBtn.addEventListener('click', ()=> togglePlay());
+
+    function resetAll(){ [panel, inverter, loadBox, gridBox].forEach(el => el.classList.remove('highlight')); hideAllDots(); [pathSunPanel, pathPanelInv, pathInvLoad, pathPanelGrid].forEach(hidePath); stageLabel.textContent = `Step 1 of ${maxStep} — ${stepTitles[0]}`; explain.innerHTML = stepExplanations[0]; currentStep = 1; }
+
+    async function autoplay(){
+      playing = true; playBtn.textContent = 'Pause';
+      for(let s = 1; s<=maxStep; s++){
+        if(!playing) break;
+        await goToStep(s);
+        // pause briefly between steps
+        await new Promise(r => setTimeout(r, 600));
+      }
+      playing = false; playBtn.textContent = 'Play';
+    }
+
+    function togglePlay(force){
+      if(typeof force === 'boolean') playing = !(!force);
+      if(playing){ // if already playing, stop
+        playing = false; playBtn.textContent = 'Play';
+      } else {
+        playing = true; autoplay();
+      }
+    }
+
+    // Initialize
+    resetAll(); goToStep(1);
+
+    // Accessibility: keyboard left/right
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'ArrowRight') nextBtn.click();
+      if(e.key === 'ArrowLeft') prevBtn.click();
+    });
+  </script></body>
+  </html>
