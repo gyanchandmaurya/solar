@@ -423,8 +423,15 @@ button.primary{background:var(--accent);border-color:transparent}
     // Resize handler: stop animations to reposition electron
     window.addEventListener('resize', ()=>{ stopAllFlows(); });
 
-    // Small enhancement: flashing inverter style (added dynamically)
+      // Small enhancement: flashing inverter style (added dynamically)
     const style = document.createElement('style');
     style.innerHTML = '.flash{animation:flashIt 0.45s linear 0s 3;}
       @keyframes flashIt{0%{filter:brightness(1)}50%{filter:brightness(1.8)}100%{filter:brightness(1)}}';
-    document.head.a
+    document.head.appendChild(style);
+
+    // Notes for users
+    // - You can step through each stage. - The diagram is illustrative and simplified for education.
+
+  </script>
+</body>
+</html>
