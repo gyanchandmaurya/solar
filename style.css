@@ -178,6 +178,22 @@ footer {
   /* background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png"); */
   background-size: cover;
 }
+#get_quote {
+    border: 2px solid red;   /* Red border */
+    background-color: blue;  /* Blue background */
+    color: black;            /* Black font color */
+    padding: 10px 20px;      /* Some spacing */
+    text-align: center;      /* Center text */
+    font-size: 16px;         /* Font size */
+    font-weight: bold;       /* Bold text */
+    border-radius: 5px;      /* Rounded corners */
+    width: fit-content;      /* Shrink to text size */
+    margin: 10px auto;       /* Center horizontally */
+}
+#get_quote:hover {
+    background-color: darkblue; /* Hover effect */
+    cursor: pointer;
+}
 
 
 /* Our Product Execution Process START */
@@ -439,6 +455,7 @@ footer {
   }
 }
  /* Rooftop solar Installation Activities Section End */
+
 
 
 
