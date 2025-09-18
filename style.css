@@ -164,13 +164,10 @@ footer {
 #get_quote{
   height: 26px;
   width: 115px;
-  background-color: white;  /* White background */
-  border-radius: 0%;
+  background-color: white;  /* background color */
+  border: 2px solid blue;   /* border color */
   border-top-right-radius: 10%;
-  border-bottom-right-radius: 10%;
-  border-left-width: 0px;
-  border-style: solid;
-  border-color: #004d40;
+  border-bottom-left-radius: 10%;
   color: #004d40;
   position: fixed;
   bottom: 60px;
@@ -445,6 +442,7 @@ footer {
   }
 }
  /* Rooftop solar Installation Activities Section End */
+
 
 
 
