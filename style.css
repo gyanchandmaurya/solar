@@ -37,6 +37,16 @@ header nav ul li a:hover {
   color: #ffcc00;
 }
 
+#company_logo{
+  height: 70px;
+  width: 70px;
+  border-radius: 10%;
+  position: fixed;
+  Top: 3px;
+  z-index: 1000;
+  background-image: url("https://iili.io/K7oy8rl.jpg");
+  background-size: cover;
+}
 /* Hero Section */
 .hero {
   background: url("https://energy-oil-gas.com/wp-content/uploads/sites/3/2023/05/Solar-panels-800x445.jpg") no-repeat center/cover;
@@ -442,6 +452,7 @@ footer {
   }
 }
  /* Rooftop solar Installation Activities Section End */
+
 
 
 
