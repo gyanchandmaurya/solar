@@ -36,14 +36,14 @@ header nav ul li a {
 header nav ul li a:hover {
   color: #ffcc00;
 }
-
-#company_logo{
-  height: 70px;
-  width: 70px;
-  border-radius: 15%;
+#company_logo {
+  height: 100px;
+  width: 100px;
   position:relative;
-  Top: 0px;
-  z-index: 1000;
+  top: 0px;
+  left: 50%;
+  border-radius: 10%;
+  display: inline-block; /* centers inside text-align */
   background-image: url("https://iili.io/K7oy8rl.jpg");
   background-size: cover;
   background-position: center;
@@ -453,6 +453,7 @@ footer {
   }
 }
  /* Rooftop solar Installation Activities Section End */
+
 
 
 
