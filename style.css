@@ -40,12 +40,13 @@ header nav ul li a:hover {
 #company_logo{
   height: 70px;
   width: 70px;
-  border-radius: 10%;
-  position: fixed;
-  Top: 3px;
+  border-radius: 15%;
+  position:relative;
+  Top: 0px;
   z-index: 1000;
   background-image: url("https://iili.io/K7oy8rl.jpg");
   background-size: cover;
+  background-position: center;
 }
 /* Hero Section */
 .hero {
@@ -452,6 +453,7 @@ footer {
   }
 }
  /* Rooftop solar Installation Activities Section End */
+
 
 
 
