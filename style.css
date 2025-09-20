@@ -37,8 +37,8 @@ header nav ul li a:hover {
   color: #ffcc00;
 }
 #company_logo {
-  height: 100px;
-  width: 100px;
+  height: 200px;
+  width: 200px;
   position:relative;
   top: 0px;
   left: 0px;
@@ -453,6 +453,7 @@ footer {
   }
 }
  /* Rooftop solar Installation Activities Section End */
+
 
 
 
