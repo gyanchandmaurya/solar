@@ -574,3 +574,29 @@
 .footer .copyright a:hover {
     color: var(--primary);
 }
+
+
+#chat{
+  height: 50px;
+  width: 50px;
+  border-radius: 10%;
+  position: fixed;
+  bottom: 3px;
+  left: 10px;
+  z-index: 1000;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png");
+  background-size: cover;
+}
+
+#company_logo {
+  height: 150px;
+  width: 150px;
+  position:relative;
+  top: 0px;
+  left: 0px;
+  border-radius: 10%;
+  display: inline-block; /* centers inside text-align */
+  background-image: url("https://iili.io/K7oy8rl.jpg");
+  background-size: cover;
+  background-position: center;
+}
