@@ -577,11 +577,11 @@
 
 
 #chat{
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   border-radius: 10%;
   position: fixed;
-  bottom: 3px;
+  bottom: 40px;
   left: 10px;
   z-index: 1000;
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png");
@@ -589,14 +589,14 @@
 }
 
 #company_logo {
-  height: 150px;
-  width: 150px;
+  height: 70px;
+  width: 70px;
   position:relative;
   top: 0px;
-  left: 0px;
+  left: -10px;
   border-radius: 10%;
   display: inline-block; /* centers inside text-align */
-  background-image: url("https://iili.io/K7oy8rl.jpg");
+  background-image: url("https://iili.io/KYHTphQ.png");
   background-size: cover;
   background-position: center;
 }
