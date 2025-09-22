@@ -589,14 +589,28 @@
 }
 
 #company_logo {
-  height: 70px;
-  width: 70px;
+  height: 90px;
+  width: 300px;
   position:relative;
   top: 0px;
-  left: -10px;
+  left: 10px;
   border-radius: 10%;
   display: inline-block; /* centers inside text-align */
-  background-image: url("https://iili.io/KYHTphQ.png");
+  background-image: url("https://iili.io/KankYWF.png");
+  /* background-image: url("https://iili.io/KYHTphQ.png"); */
+  background-size: cover;
+  background-position: center;
+}
+
+#APN_logo {
+  height: 90px;
+  width: 300px;
+  position:relative;
+  top: 0px;
+  left: 10px;
+  border-radius: 10%;
+  display: inline-block; /* centers inside text-align */
+  background-image: url("https://images.jdmagicbox.com/v2/comp/thane/x7/022pxx22.xx22.181009145017.z6x7/catalogue/apn-solar-energy-pvt-ltd-mira-road-east-thane-solar-panel-installation-services-e45o2itjjs.jpg");
   background-size: cover;
   background-position: center;
 }
