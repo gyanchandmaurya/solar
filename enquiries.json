@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Rahul Sharma",
+    "mobile": "9876543210",
+    "email": "rahul@example.com",
+    "requirement": "Solar Panel for Home",
+    "date": "2025-09-23"
+  },
+  {
+    "name": "Sneha Patel",
+    "mobile": "9123456789",
+    "email": "sneha@example.com",
+    "requirement": "Loan Enquiry",
+    "date": "2025-09-23"
+  }
+]
