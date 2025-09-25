@@ -177,6 +177,25 @@
     </div>
     <!-- Contact End -->
 
+<!-- ------------Dynamic link using JavaScript (message encoded automatically) Start--------------- -->
+ <!-- Dynamic: reads values and opens WhatsApp with proper encoding -->
+<button id="whBtn">Get Quotation</button>
+
+<script>
+document.getElementById('whBtn').addEventListener('click', function() {
+  const phone = "919220973200";           // include country code, no plus
+  const message = "Hi! Call me for Solar Details 😊"; // any text (will be encoded)
+  const url = "https://api.whatsapp.com/send?phone=" + phone + "&text=" + encodeURIComponent(message);
+  window.open(url, '_blank', 'noopener');
+});
+</script>
+
+<br><br>
+<a href="https://api.whatsapp.com/send?phone=919220973200&text=Give%20me%20Solar%20Quotation%20feel%20free%20to%20contact%20me%20on%20same%20WhatsApp" target="_blank">Request for Call Back</a>
+
+
+<!-- ---------------------------------------------------------------------- -->
+
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-body footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
