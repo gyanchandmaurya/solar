@@ -188,25 +188,26 @@
     }
 
     #chat{
-      height: 50px;
-      width: 50px;
+      height: 70px;
+      width: 70px;
       border-radius: 10%;
       position: fixed;
-      bottom: 3px;
+      bottom: 10px;
       left: 10px;
       z-index: 1000;
       background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png");
       background-size: cover;
     }
     #Tchat{
-      height: 42px;
-      width: 42px;
-      border-radius: 10%;
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
       position: fixed;
-      bottom: 8px;
-      left: 70px;
+      bottom: 10px;
+      right: 10px;
       z-index: 1000;
-      background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png");
+      background-image: url("https://iili.io/K0IFJFS.png");
+      /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCDgcdcalh2EWYI8b2MstK84r5daxTjrLe-w&s"); */
       background-size: cover;
     }
     #Mobile{
