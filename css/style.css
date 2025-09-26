@@ -723,3 +723,65 @@
   }
 }
  /* Rooftop solar Installation Activities Section End */
+
+ /* Our Product Execution Process START */
+    .accordion {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid #a9a2a2;
+    }
+
+    .accordion-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      cursor: pointer;
+      background: #fbfeff;
+      color: #700e0e;
+      font-size: 18px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .accordion-title:hover {
+      background: #fff;
+    }
+
+    .accordion-title i {
+      transition: transform 0.3s ease;
+    }
+
+    .accordion-title.active i {
+      transform: rotate(180deg);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      background: #f1f1f1;
+      padding: 0 20px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .accordion-content.open {
+      padding: 15px 20px;
+      max-height: 500px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .accordion-content {
+        font-size: 14px;
+      }
+    }
+/* Our Product Execution Process END */
