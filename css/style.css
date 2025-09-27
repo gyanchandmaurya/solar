@@ -17,15 +17,67 @@
     font-weight: 900 !important;
 }
 
+/* ------My custome Item Start----------------- */
 .back-to-top {
     position: fixed;
     display: none;
-    right: 45px;
-    bottom: 45px;
+    right: 10px;
+    bottom: 5px;
     z-index: 99;
 }
 
+#chat{
+  height: 50px;
+  width: 50px;
+  border-radius: 10%;
+  position: fixed;
+  bottom: 5px;
+  left: 10px;
+  z-index: 1000;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png");
+  background-size: cover;
+}
 
+#company_logo {
+  height: 70px;
+  width: 240px;
+  position:relative;
+  top: 2px;
+  left: 5px;
+  border-radius: 10%;
+  display: inline-block; /* centers inside text-align */
+  background-image: url("https://iili.io/KankYWF.png");
+  /* background-image: url("https://iili.io/KYHTphQ.png"); */
+  background-size: cover;
+  background-position: center;
+}
+
+#APN_logo {
+  height: 90px;
+  width: 300px;
+  position:relative;
+  top: 0px;
+  left: 10px;
+  border-radius: 10%;
+  display: inline-block; /* centers inside text-align */
+  background-image: url("https://partner.apnsolar.com/assets/logo.png");
+  background-size: cover;
+  background-position: center;
+}
+
+#Tchat{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1000;
+    background-image: url("https://iili.io/K0IFJFS.png");
+    /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCDgcdcalh2EWYI8b2MstK84r5daxTjrLe-w&s"); */
+    background-size: cover;
+}
+/* ------My custome Item End----------------- */
 /*** Spinner ***/
 #spinner {
     opacity: 0;
@@ -158,7 +210,7 @@
 @media (max-width: 768px) {
     .header-carousel .owl-carousel-item {
         position: relative;
-        min-height: 400px;
+        min-height: 500px;
     }
 
     .header-carousel .owl-carousel-item img {
@@ -576,59 +628,6 @@
 }
 
 
-#chat{
-  height: 60px;
-  width: 60px;
-  border-radius: 10%;
-  position: fixed;
-  bottom: 40px;
-  left: 10px;
-  z-index: 1000;
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png");
-  background-size: cover;
-}
-
-#company_logo {
-  height: 70px;
-  width: 240px;
-  position:relative;
-  top: 2px;
-  left: 5px;
-  border-radius: 10%;
-  display: inline-block; /* centers inside text-align */
-  background-image: url("https://iili.io/KankYWF.png");
-  /* background-image: url("https://iili.io/KYHTphQ.png"); */
-  background-size: cover;
-  background-position: center;
-}
-
-#APN_logo {
-  height: 90px;
-  width: 300px;
-  position:relative;
-  top: 0px;
-  left: 10px;
-  border-radius: 10%;
-  display: inline-block; /* centers inside text-align */
-  background-image: url("https://partner.apnsolar.com/assets/logo.png");
-  background-size: cover;
-  background-position: center;
-}
-
-#Tchat{
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  z-index: 1000;
-  background-image: url("https://iili.io/K0IFJFS.png");
-  /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCDgcdcalh2EWYI8b2MstK84r5daxTjrLe-w&s"); */
-  background-size: cover;
-}
-
-
 /*  Rooftop solar Installation Activities Section End */
 .on_grid{
   max-height: 350px;
@@ -724,6 +723,7 @@
 }
  /* Rooftop solar Installation Activities Section End */
 
+
  /* Our Product Execution Process START */
     .accordion {
       max-width: 700px;
@@ -785,3 +785,87 @@
       }
     }
 /* Our Product Execution Process END */
+
+/* <!-- ====================Subsidy End============================================ --> */
+    .su_container {
+      max-width: 1200px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #0056b3;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+    .subsidy-section {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+    .subox {
+      flex: 1;
+      min-width: 280px;
+      margin: 10px;
+      padding: 20px;
+      border-right: 1px solid #ddd;
+    }
+    .subox:last-child {
+      border-right: none;
+    }
+    .subox h3 {
+      color: #000;
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+    .highlight {
+      color: #0056b3;
+      font-weight: bold;
+    }
+    /* Horizontal layout for Residential benefits */
+    .benefit-row {
+      display: flex;
+      justify-content: space-around;
+      align-items: stretch;
+      gap: 20px;
+      margin-top: 15px;
+    }
+    .benefit {
+      flex: 1;
+      background: #f1f5fb;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .sunote {
+      text-align: center;
+      margin: 20px 0;
+      font-weight: bold;
+    }
+    .capacity-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      text-align: center;
+    }
+    .capacity-table th, .capacity-table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    .capacity-table th {
+      background: #f1f5fb;
+    }
+    .rounded-box {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+/* <!-- ====================Subsidy End============================================ --> */
