@@ -124,25 +124,116 @@
     </div>
     <!-- Page Header End -->
 
-<!-- ------------Dynamic link using JavaScript (message encoded automatically) Start--------------- -->
-        <button id="whBtn">Get Quotation</button>
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- Put this CSS in your <head> or a stylesheet -->
+<style>
+/* Floating WhatsApp callback button */
+.whatsapp-callback {
+  position: fixed;
+  right: 10px;
+  bottom: 100px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #2500f8;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 40px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  font-family: Arial, sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.whatsapp-callback:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.22);
+  color: white;
+  background-color: rgb(39, 6, 71);
+}
 
-        <script>
-        document.getElementById('whBtn').addEventListener('click', function() {
-        const phone = "919220973200";           // include country code, no plus
-        const message = "Hi! Call me for Solar Details 😊"; // any text (will be encoded)
-        const url = "https://api.whatsapp.com/send?phone=" + phone + "&text=" + encodeURIComponent(message);
-        window.open(url, '_blank', 'noopener');
-        });
-        </script>
-<!-- ------------Dynamic link using JavaScript (message encoded automatically) End--------------- -->
- 
-<br><br>
-<a href="https://api.whatsapp.com/send?phone=919220973200&text=Give%20me%20Solar%20Quotation%20feel%20free%20to%20contact%20me%20on%20same%20WhatsApp" target="_blank">Request for Call Back</a>
+/* compact icon-only on very small screens */
+@media (max-width: 420px) {
+  .whatsapp-callback {
+    padding: 10px;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    justify-content: center;
+  }
+  .whatsapp-callback .label { display: none; }
+}
+
+/* Icon */
+/* .whatsapp-callback svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.whatsapp-callback .label {
+  font-size: 14px;
+  line-height: 1;
+} */
+
+/* Optional small variant: place at left instead by adding class .left */
+.whatsapp-callback.left { left: 20px; right: auto; }
+</style>
+
+<!-- Place this at the end of <body> -->
+<a id="whatsappCallback" 
+   class="whatsapp-callback" 
+   role="button" 
+   aria-label="Chat with us on WhatsApp"
+   target="_blank" 
+   rel="noopener noreferrer"
+   href="https://api.whatsapp.com/send?phone=919220973200&text=Give%20me%20Solar%20Quotation%20feel%20free%20to%20contact%20me%20on%20same%20WhatsApp">
+  <!-- WhatsApp SVG icon -->
+  <!-- <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path fill="#ffffff" d="M20.52 3.48A11.8 11.8 0 0 0 12 .5C5.73.5.96 5.27.96 11.54c0 2.02.53 3.92 1.53 5.61L.5 23.5l6.6-1.72a11.15 11.15 0 0 0 5.4 1.31h.01c6.27 0 11.04-4.77 11.04-11.04 0-3-.98-5.8-2.98-7.56zM12 21.2h-.01c-1.78 0-3.52-.47-5.03-1.36l-.36-.21-3.93 1.02 1.04-3.83-.23-.38A9.16 9.16 0 0 1 2.84 11.5c0-5 4.06-9.06 9.06-9.06 2.42 0 4.7.94 6.41 2.65a8.93 8.93 0 0 1 2.65 6.4c0 5-4.06 9.06-9.06 9.06z"/>
+    <path fill="#ffffff" d="M17.36 14.35c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.19.27-.73.88-.9 1.06-.17.19-.34.21-.61.07-.27-.14-1.14-.42-2.17-1.35-.8-.71-1.34-1.59-1.5-1.86-.16-.27-.02-.42.12-.56.12-.12.27-.34.41-.51.14-.17.19-.28.28-.46.09-.19.05-.36-.02-.5-.07-.14-.61-1.47-.84-2.02-.22-.53-.45-.46-.61-.47-.16-.01-.35-.01-.53-.01-.19 0-.5.07-.76.34-.26.27-1 1-1 2.45 0 1.44 1.03 2.83 1.17 3.03.14.2 2.02 3.08 4.9 4.31 1.23.49 2.19.78 2.94 1.01.78.25 1.49.21 2.05.13.63-.09 1.6-.65 1.83-1.27.23-.62.23-1.16.16-1.27-.07-.11-.26-.17-.53-.3z"/>
+  </svg> -->
+
+  <span class="label">Request a Callback</span>
+</a>
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+
+
+<!-- --------------Google Contact Form End----------------- -->
+  <style>
+    #survey_form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    iframe {
+      border: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div id="survey_form">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSci_j7I411Z05o7_Sov4__LCf7gOjROF-T3QMbmbDg5PaSQPQ/viewform?embedded=true" 
+            width="640" 
+            height="1500" 
+            frameborder="0" 
+            marginheight="0" 
+            marginwidth="0">
+      Loading…
+    </iframe>
+  </div>
+</body>
+<!-- --------------Google Contact Form End----------------- -->
+
 
 
     <!-- Contact Start -->
-    <div class="container-fluid bg-light overflow-hidden px-lg-0" style="margin: 6rem 0;">
+    <!-- <div class="container-fluid bg-light overflow-hidden px-lg-0" style="margin: 6rem 0;">
         <div class="container contact px-lg-0">
             <div class="row g-0 mx-lg-0">
                 <div class="col-lg-6 contact-text py-5 wow fadeIn" data-wow-delay="0.5s">
@@ -190,7 +281,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Contact End -->
 
 
@@ -203,7 +294,7 @@
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-white mb-4">Address</h5>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i><a href="#">Thane, Maharashtra, India</a></p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i><a href="">Thane, Maharashtra, India</a></p>
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i><a href="tel:+917058866337" target="_blank">+91 70588 663370</a></p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i><a href="mailto:solarshakti.in@gmail.com" target="_blank">solarshakti.in@gmail.com</a></p>
                     <div class="d-flex pt-2">
@@ -244,14 +335,14 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6">
                     <h5 class="text-white mb-4">Newsletter</h5>
                     <p></p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
                         <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
                         <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
         <div class="container">
@@ -272,7 +363,7 @@
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
-    <a href="https://wa.me/917058866337" target="_blank"><div id="chat"></div> </a>
+    <a href="https://api.whatsapp.com/send?phone=919220973200&text=I%20am%20looking%20for%20Solar%20Plant" target="_blank"><div id="chat"></div> </a>
     
 
     <!-- JavaScript Libraries -->
