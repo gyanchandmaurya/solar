@@ -116,3 +116,69 @@ const items = document.querySelectorAll(".accordion-title");
       });
     });
     //  Our Product Execution Process End----------
+
+    // <!-- ---------------Soalr Pant Calculator Start---------------------- -->
+    function getRatePerKW(capacity) {
+      if (capacity >= 3 && capacity <= 6) return 56000;
+      if (capacity >= 7 && capacity <= 9) return 51000;
+      if (capacity >= 10 && capacity <= 20) return 46000;
+      if (capacity >= 21 && capacity <= 50) return 44000;
+      if (capacity >= 51 && capacity <= 100) return 42000;
+      if (capacity >= 101 && capacity <= 200) return 38000;
+      return 0;
+    }
+
+    function getSubsidy(capacity, isDCR) {
+      if (!isDCR) return 0; // Subsidy only for DCR panel
+      // if (capacity === 1) return 30000;
+      // if (capacity === 2) return 60000;
+      if (capacity === 3) return 78000;
+      if (capacity > 3) return capacity * 18000;
+      return 0;
+    }
+
+    function calculate() {
+      const capacity = parseFloat(document.getElementById("capacity").value);
+      const buildingRate = parseFloat(document.getElementById("building").value);
+
+      const panelSelect = document.getElementById("panel");
+      const panelRate = parseFloat(panelSelect.value);
+      const panelType = panelSelect.options[panelSelect.selectedIndex].dataset.type;
+
+      if (isNaN(capacity) || capacity < 1 || capacity > 200) {
+        document.getElementById("result").innerHTML = "<b>Please enter capacity between 3kW and 200kW.</b>";
+        return;
+      }
+
+      const ratePerKW = getRatePerKW(capacity);
+      const baseCost = capacity * ratePerKW;
+
+      // Additional charges per kW
+      const additionalBuilding = capacity * buildingRate;
+      const additionalPanel = capacity * panelRate;
+      const additionalTotal = additionalBuilding + additionalPanel;
+
+      const subtotal = baseCost + additionalTotal;
+      const gst = subtotal * 0.089;
+      const total = subtotal + gst;
+
+      // Subsidy (only for DCR Panel)
+      const subsidy = getSubsidy(capacity, panelType === "dcr");
+      const netCost = total - subsidy;
+
+      document.getElementById("result").innerHTML = `
+        <b>Calculation Result:</b><br>
+        Capacity: ${capacity} kW<br>
+        Rate per kW: ₹${ratePerKW.toLocaleString()}<br>
+        Base Cost: ₹${baseCost.toLocaleString()}<br>
+        Building Charge: ₹${additionalBuilding.toLocaleString()}<br>
+        DCR Panel Charge: ₹${additionalPanel.toLocaleString()}<br>
+        Additional Total: ₹${additionalTotal.toLocaleString()}<br>
+        Subtotal: ₹${subtotal.toLocaleString()}<br>
+        GST (8.90%): ₹${gst.toLocaleString(undefined,{maximumFractionDigits:0})}<br>
+        <b>Total Project Cost: ₹${total.toLocaleString(undefined,{maximumFractionDigits:0})}</b><br><br>
+        <b>Government Subsidy: ₹${subsidy.toLocaleString()}</b><br>
+        <b>Net Cost after Subsidy: ₹${netCost.toLocaleString(undefined,{maximumFractionDigits:0})}</b>
+      `;
+    }
+    // <!-- ---------------Soalr Pant Calculator End------------------------ -->
