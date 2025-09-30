@@ -32,3 +32,52 @@
       background-color: #f9f9f9;
     }
 /* <!-- -----------------Rates End-------------------------- --> */
+
+
+/* <!-- ---------------Soalr Pant Calculator Start------------------------ --> */
+.calculator {
+      max-width: 520px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 12px 0 6px;
+    }
+    select, input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #28a745;
+      color: #fff;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #218838;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 6px;
+      background: #e9f7ef;
+      border: 1px solid #c3e6cb;
+    }
+/* <!-- ---------------Soalr Pant Calculator End------------------------ --> */
