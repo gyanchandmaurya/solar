@@ -176,7 +176,7 @@ const items = document.querySelectorAll(".accordion-title");
         
         <b>Subtotal: ₹${subtotal.toLocaleString()}<b><br>
         <b>Average GST (8.90%): ₹${gst.toLocaleString(undefined,{maximumFractionDigits:0})}<b><br>
-        <b>Total Project Cost: ₹${total.toLocaleString(undefined,{maximumFractionDigits:0})}</b><br><br>
+        <b>Total Project Cost: ₹${total.toLocaleString(undefined,{maximumFractionDigits:0})}</b><br><br><br>
         <b>Government Subsidy: ₹${subsidy.toLocaleString()}</b><br>
         <b>Net Cost after Subsidy: ₹${netCost.toLocaleString(undefined,{maximumFractionDigits:0})}</b>
       `;
