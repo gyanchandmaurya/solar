@@ -173,7 +173,7 @@ const items = document.querySelectorAll(".accordion-title");
         Base Cost: ₹${baseCost.toLocaleString()}<br>
         Building Charge: ₹${additionalBuilding.toLocaleString()}<br>
         DCR Panel Charge: ₹${additionalPanel.toLocaleString()}<br>
-        // Additional Total: ₹${additionalTotal.toLocaleString()}<br>
+        
         <b>Subtotal: ₹${subtotal.toLocaleString()}<b><br>
         <b>Average GST (8.90%): ₹${gst.toLocaleString(undefined,{maximumFractionDigits:0})}<b><br>
         <b>Total Project Cost: ₹${total.toLocaleString(undefined,{maximumFractionDigits:0})}</b><br><br>
@@ -181,4 +181,7 @@ const items = document.querySelectorAll(".accordion-title");
         <b>Net Cost after Subsidy: ₹${netCost.toLocaleString(undefined,{maximumFractionDigits:0})}</b>
       `;
     }
+    // Additional Total: ₹${additionalTotal.toLocaleString()}<br>
     // <!-- ---------------Soalr Pant Calculator End------------------------ -->
+
+    // Additional Total: ₹${additionalTotal.toLocaleString()}<br></br>
