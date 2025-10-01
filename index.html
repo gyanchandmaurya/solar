@@ -243,14 +243,14 @@
       <div class="subox">
         <h3 style="text-align: center;">Subsidy for <span class="highlight">Residential Households</span></h3>
         <div class="benefit-row">
-          <div class="benefit">
+          <!-- <div class="benefit">
             Rs. <span class="highlight">30,000</span><br> per kW <br> <span style="font-weight: 100; font-size:small;">up to 2 kW </span>
           </div>
           <div class="benefit">
             Rs. <span class="highlight">18,000</span><br> per kW <br> <span style="font-weight: 100; font-size:small;"> for additional capacity up to 3 kW </span>
-          </div>
+          </div> -->
           <div class="benefit">
-            Rs. <span class="highlight">78,000</span><br> Total subsidy <br> <span style="font-weight: 100; font-size:small;"> Total subsidy for systems larger than 3 kW capped at </span>
+            Rs. <span class="highlight">78,000</span><br> Total subsidy <br> <span style="font-weight: 100; font-size:small;"> Total subsidy for systems larger than 3 kW capped at Rs.78,000</span>
           </div>
         </div>
       </div>
@@ -322,7 +322,7 @@
     </table>
 
     <!-- Off-Grid Table -->
-    <table>
+    <!-- <table>
       <h2>Product - Off-Grid (DiY) + 8.90% GST without Installation </h2>
       <tr>
         <th>kW</th>
@@ -336,7 +336,7 @@
         <td>1 kW</td>
         <td>78000</td>
       </tr>
-    </table>
+    </table> -->
 	  	<h10>Average GST on Solar Project 8.90% <br> (5% GST on Project value of 70% & and 18% on rest 30%)</h10>
   </div>
 </div>
@@ -345,7 +345,7 @@
 
 <!-- ---------------Soalr Pant Calculator Start------------------------ --> 
  <div class="calculator">
-    <h2>Solar Plant Calculator</h2>
+    <h2>Solar Project Calculator</h2>
 
     <label for="capacity">Enter Capacity (3 kW to 200 kW) </label>
     <input type="number" id="capacity" placeholder="Enter capacity in kW" min="1" max="200">
@@ -360,8 +360,8 @@
 
     <label for="panel">Panel Type</label>
     <select id="panel">
-      <option value="0" data-type="non-dcr">Non DCR Panel</option>
-      <option value="5000" data-type="dcr">DCR Panel (Govt. Subsidy)</option>
+      <option value="0" data-type="non-dcr">Commercial (Non DCR Panel)</option>
+      <option value="5000" data-type="dcr">Residential (DCR Panel)</option>
     </select>
 
     <button class="cal_button" onclick="calculate()">Calculate</button>
