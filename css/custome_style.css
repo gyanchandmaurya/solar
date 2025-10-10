@@ -36,7 +36,12 @@
 
 /* <!-- ---------------Soalr Pant Calculator Start------------------------ --> */
 
-.calculator {
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f9f9;
+      padding: 30px;
+    }
+    .calculator {
       max-width: 520px;
       margin: auto;
       background: #fff;
@@ -44,12 +49,16 @@
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
-/*
-    label {
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    /* label {
       font-weight: bold;
       display: block;
       margin: 12px 0 6px;
-    }*/
+    } */
     select, input {
       width: 100%;
       padding: 10px;
@@ -67,7 +76,7 @@
       font-size: 16px;
       cursor: pointer;
     }
-    .cal_button:hover {
+   .cal_button:hover {
       background: #218838;
     }
     .result {
@@ -77,57 +86,6 @@
       background: #e9f7ef;
       border: 1px solid #c3e6cb;
     }
-/* <!-- ---------------Soalr Pant Calculator End------------------------ --> */
-
-/* ------Floating WhatsApp callback button Start-------- */
-.whatsapp-callback {
-  position: fixed;
-  right: 70px;
-  bottom: 5px;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #2500f8;
-  color: #fff;
-  padding: 12px 16px;
-  border-radius: 40px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
-  font-family: Arial, sans-serif;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  transition: transform .12s ease, box-shadow .12s ease;
-}
-.whatsapp-callback:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.22);
-  color: white;
-  background-color: rgb(39, 6, 71);
-}
-
-/* compact icon-only on very small screens */
-/* @media (max-width: 420px) {
-   .whatsapp-callback {
-    padding: 10px;
-    border-radius: 50%;
-    width: 56px;
-    height: 56px;
-    justify-content: center;
-  }
-  .whatsapp-callback .label { display: none; }
-} */
-    
-/* Icon */
-/* .whatsapp-callback svg {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-}
-.whatsapp-callback .label {
-  font-size: 14px;
-  line-height: 1;
-} */
 
 /* Optional small variant: place at left instead by adding class .left */
 .whatsapp-callback.left { left: 20px; right: auto; }
