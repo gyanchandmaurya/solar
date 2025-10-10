@@ -93,7 +93,7 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Utility</a>
                     <div class="dropdown-menu bg-light m-0">
                         <a href="https://partner.apnsolar.com/" target="_blank" class="dropdown-item">Partner Login</a>
-                        <a href="#calculator" target="_blank" class="dropdown-item">Solar Projec Calculator</a>
+                        <a href="#calculator" target="_self" class="dropdown-item">Solar Projec Calculator</a>
                         <a href="https://consumer.pmsuryaghar.gov.in/consumer/#/login" target="_blank" class="dropdown-item">Customer Portal</a>
                         <a href="https://css.mahadiscom.in/UI/ROOFTOP/Solar_RTS.aspx" target="_blank" class="dropdown-item">Application Status</a>
                         <!-- <a href="https://mauryag.vercel.app/" target="_blank" class="dropdown-item">Investment Plan</a> -->
@@ -359,18 +359,24 @@
 <!-- -----------------Rates End-------------------------- -->
 
 <!-- ---------------Soalr Pant Calculator Start------------------------ --> 
- <div class="calculator" id="calculator">
-    <h2>Solar Project Calculator</h2>
+  <div class="calculator" id="calculator">
+    <h2>Solar Plant Calculator</h2>
 
     <label for="capacity">Enter Capacity (3 kW to 200 kW) </label>
     <input type="number" id="capacity" placeholder="Enter capacity in kW" min="1" max="200">
 
     <label for="building">Building Height</label>
     <select id="building">
-      <option value="0">Ground</option>
       <option value="0">G+1</option>
       <option value="1000">G+2</option>
       <option value="2000">G+3</option>
+    </select>
+
+    <label for="structure">Select Structure</label>
+    <select id="structure">
+      <option value="0">Mono Rail Structure</option>
+      <option value="0">Standard (Front Leg 1'6")</option>
+      <option value="6000">Super (Front Leg 4'0")</option>
     </select>
 
     <label for="panel">Panel Type</label>
