@@ -1,9 +1,5 @@
-  =>  Template Name    : Solartec - Renewable Energy Website Template
+  =>  Template Name    : Solar Shakti - Renewable Energy Website
 
-  =>  Template Link    : https://htmlcodex.com/renewable-energy-website-template
+  =>  Template Author  : HTML & CSS
 
-  =>  Template License : https://htmlcodex.com/license (or read the LICENSE.txt file)
-
-  =>  Template Author  : HTML Codex
-
-  =>  Author Website   : https://htmlcodex.com
+  =>  Author Website   : https://solarshakti.in
