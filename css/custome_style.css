@@ -35,12 +35,6 @@
 
 
 /* <!-- ---------------Soalr Pant Calculator Start------------------------ --> */
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f9f9;
-      padding: 30px;
-    }
     .calculator {
       max-width: 520px;
       margin: auto;
