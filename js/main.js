@@ -130,8 +130,6 @@ const items = document.querySelectorAll(".accordion-title");
 
     function getSubsidy(capacity, isDCR) {
       if (!isDCR) return 0; // Subsidy only for DCR panel
-      // if (capacity === 1) return 30000;
-      // if (capacity === 2) return 60000;
       if (capacity === 3) return 78000;
       if (capacity > 3) return capacity * 18000;
       return 0;
@@ -140,12 +138,13 @@ const items = document.querySelectorAll(".accordion-title");
     function calculate() {
       const capacity = parseFloat(document.getElementById("capacity").value);
       const buildingRate = parseFloat(document.getElementById("building").value);
+      const structureRate = parseFloat(document.getElementById("structure").value);
 
       const panelSelect = document.getElementById("panel");
       const panelRate = parseFloat(panelSelect.value);
       const panelType = panelSelect.options[panelSelect.selectedIndex].dataset.type;
 
-      if (isNaN(capacity) || capacity < 1 || capacity > 200) {
+      if (isNaN(capacity) || capacity < 3 || capacity > 200) {
         document.getElementById("result").innerHTML = "<b>Please enter capacity between 3kW and 200kW.</b>";
         return;
       }
@@ -156,9 +155,11 @@ const items = document.querySelectorAll(".accordion-title");
       // Additional charges per kW
       const additionalBuilding = capacity * buildingRate;
       const additionalPanel = capacity * panelRate;
-      const additionalTotal = additionalBuilding + additionalPanel;
+      const additionalStructure = capacity * structureRate;
+      const additionalTotal = additionalBuilding + additionalPanel + additionalStructure;
 
       const subtotal = baseCost + additionalTotal;
+      const finalRatePerKW = subtotal / capacity; // before GST
       const gst = subtotal * 0.089;
       const total = subtotal + gst;
 
@@ -172,11 +173,13 @@ const items = document.querySelectorAll(".accordion-title");
         Rate per kW: ₹${ratePerKW.toLocaleString()}<br>
         Base Cost: ₹${baseCost.toLocaleString()}<br>
         Building Charge: ₹${additionalBuilding.toLocaleString()}<br>
+        Structure Charge: ₹${additionalStructure.toLocaleString()}<br>
         DCR Panel Charge: ₹${additionalPanel.toLocaleString()}<br>
-        
-        <b>Subtotal: ₹${subtotal.toLocaleString()}<b><br>
-        <b>Average GST (8.90%): ₹${gst.toLocaleString(undefined,{maximumFractionDigits:0})}<b><br>
-        <b>Total Project Cost: ₹${total.toLocaleString(undefined,{maximumFractionDigits:0})}</b><br><br><br>
+        Additional Total: ₹${additionalTotal.toLocaleString()}<br>
+        <b>Final Rate per kW (Before GST): ₹${finalRatePerKW.toLocaleString(undefined,{maximumFractionDigits:0})}</b><br>
+        <b>Subtotal: ₹${subtotal.toLocaleString()}</b><br>
+        <b>GST (8.90%): ₹${gst.toLocaleString(undefined,{maximumFractionDigits:0})}</b><br>
+        <b>Total Project Cost: ₹${total.toLocaleString(undefined,{maximumFractionDigits:0})}</b><br><br>
         <b>Government Subsidy: ₹${subsidy.toLocaleString()}</b><br>
         <b>Net Cost after Subsidy: ₹${netCost.toLocaleString(undefined,{maximumFractionDigits:0})}</b>
       `;
