@@ -118,7 +118,7 @@ const items = document.querySelectorAll(".accordion-title");
     //  Our Product Execution Process End----------
 
     // <!-- ---------------Soalr Pant Calculator Start---------------------- -->
-    function getRatePerKW(capacity) {
+     function getRatePerKW(capacity) {
       if (capacity >= 3 && capacity <= 6) return 56000;
       if (capacity >= 7 && capacity <= 9) return 51000;
       if (capacity >= 10 && capacity <= 20) return 46000;
