@@ -48,11 +48,12 @@
       margin-bottom: 20px;
       color: #333;
     }
-    /* label {
+    label {
       font-weight: bold;
       display: block;
-      margin: 12px 0 6px;
-    } */
+      margin: 2px 0 2px;
+      color: rgb(19, 5, 96);
+    }
     select, input {
       width: 100%;
       padding: 10px;
