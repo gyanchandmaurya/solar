@@ -169,14 +169,9 @@ const items = document.querySelectorAll(".accordion-title");
 
       document.getElementById("result").innerHTML = `
         <b>Calculation Result:</b><br>
-        Capacity: ${capacity} kW<br>
-        Rate per kW: ₹${ratePerKW.toLocaleString()}<br>
-        Base Cost: ₹${baseCost.toLocaleString()}<br>
-        Building Charge: ₹${additionalBuilding.toLocaleString()}<br>
-        Structure Charge: ₹${additionalStructure.toLocaleString()}<br>
-        DCR Panel Charge: ₹${additionalPanel.toLocaleString()}<br>
-        Additional Total: ₹${additionalTotal.toLocaleString()}<br>
-        <b>Final Rate per kW (Before GST): ₹${finalRatePerKW.toLocaleString(undefined,{maximumFractionDigits:0})}</b><br>
+        <b>Capacity: ${capacity} kW<br>
+
+        <b>Final Rate per kW: ₹${finalRatePerKW.toLocaleString(undefined,{maximumFractionDigits:0})}</b><br>
         <b>Subtotal: ₹${subtotal.toLocaleString()}</b><br>
         <b>GST (8.90%): ₹${gst.toLocaleString(undefined,{maximumFractionDigits:0})}</b><br>
         <b>Total Project Cost: ₹${total.toLocaleString(undefined,{maximumFractionDigits:0})}</b><br><br>
@@ -184,7 +179,12 @@ const items = document.querySelectorAll(".accordion-title");
         <b>Net Cost after Subsidy: ₹${netCost.toLocaleString(undefined,{maximumFractionDigits:0})}</b>
       `;
     }
-    // Additional Total: ₹${additionalTotal.toLocaleString()}<br>
-    // <!-- ---------------Soalr Pant Calculator End------------------------ -->
 
-    // Additional Total: ₹${additionalTotal.toLocaleString()}<br></br>
+// Additional Information not shown in calculation
+        //Rate per kW: ₹${ratePerKW.toLocaleString()}<br>
+        // Base Cost: ₹${baseCost.toLocaleString()}<br>
+        // Building Charge: ₹${additionalBuilding.toLocaleString()}<br>
+        // Structure Charge: ₹${additionalStructure.toLocaleString()}<br>
+        // DCR Panel Charge: ₹${additionalPanel.toLocaleString()}<br>
+        // Additional Total: ₹${additionalTotal.toLocaleString()}<br>
+    // <!-- ---------------Soalr Pant Calculator End------------------------ -->
