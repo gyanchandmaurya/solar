@@ -376,9 +376,11 @@
   <div class="calculator" id="calculator">
      <h2 style="color: red;"><u>Solar Plant Calculator</u></h2>
 
-    <label class="cal_lable" for="capacity">kW = Monthly Unit Consumption / 120 </label> <br>
-    <label for="capacity">Enter Capacity (3 kW to 200 kW)</label>
-    <input type="number" id="capacity" placeholder="Enter capacity in kW" min="1" max="200">
+    <label for="units">Monthly Consumption (Units)</label>
+    <input type="number" id="units" placeholder="Enter monthly units">
+
+    <label for="capacity">Capacity (Auto or Manual)</label>
+    <input type="number" id="capacity" placeholder="Enter capacity in kW (auto if units entered)" min="1" max="200">
 
     <label for="building">Building Height</label>
     <select id="building">
@@ -404,6 +406,7 @@
 
     <div class="result" id="result"></div>
   </div>
+  <br>
 <!-- ---------------Soalr Pant Calculator Start------------------------ --> 
 
 
