@@ -118,7 +118,17 @@ const items = document.querySelectorAll(".accordion-title");
     //  Our Product Execution Process End----------
 
     // <!-- ---------------Soalr Pant Calculator Start---------------------- -->
-     function getRatePerKW(capacity) {
+     // Auto calculate kW when monthly units entered
+document.getElementById("units").addEventListener("input", function () {
+  let units = parseFloat(this.value);
+
+  if (!isNaN(units) && units > 0) {
+    let kW = Math.ceil(units / 120);  // Round UP to next whole number
+    document.getElementById("capacity").value = kW;
+  }
+});
+
+    function getRatePerKW(capacity) {
       if (capacity >= 3 && capacity <= 6) return 56000;
       if (capacity >= 7 && capacity <= 9) return 51000;
       if (capacity >= 10 && capacity <= 20) return 46000;
@@ -129,14 +139,20 @@ const items = document.querySelectorAll(".accordion-title");
     }
 
     function getSubsidy(capacity, isDCR) {
-      if (!isDCR) return 0; // Subsidy only for DCR panel
+      if (!isDCR) return 0;
       if (capacity === 3) return 78000;
       if (capacity > 3) return capacity * 18000;
       return 0;
     }
 
     function calculate() {
-      const capacity = parseFloat(document.getElementById("capacity").value);
+      let capacity = parseFloat(document.getElementById("capacity").value);
+
+      if (isNaN(capacity) || capacity < 1 || capacity > 200) {
+        document.getElementById("result").innerHTML = "<b>Please enter valid capacity (auto or manual).</b>";
+        return;
+      }
+
       const buildingRate = parseFloat(document.getElementById("building").value);
       const structureRate = parseFloat(document.getElementById("structure").value);
 
@@ -144,33 +160,26 @@ const items = document.querySelectorAll(".accordion-title");
       const panelRate = parseFloat(panelSelect.value);
       const panelType = panelSelect.options[panelSelect.selectedIndex].dataset.type;
 
-      if (isNaN(capacity) || capacity < 3 || capacity > 200) {
-        document.getElementById("result").innerHTML = "<b>Please enter capacity between 3kW and 200kW.</b>";
-        return;
-      }
-
       const ratePerKW = getRatePerKW(capacity);
       const baseCost = capacity * ratePerKW;
 
-      // Additional charges per kW
       const additionalBuilding = capacity * buildingRate;
       const additionalPanel = capacity * panelRate;
       const additionalStructure = capacity * structureRate;
       const additionalTotal = additionalBuilding + additionalPanel + additionalStructure;
 
       const subtotal = baseCost + additionalTotal;
-      const finalRatePerKW = subtotal / capacity; // before GST
+      const finalRatePerKW = subtotal / capacity;
       const gst = subtotal * 0.089;
       const total = subtotal + gst;
 
-      // Subsidy (only for DCR Panel)
       const subsidy = getSubsidy(capacity, panelType === "dcr");
       const netCost = total - subsidy;
 
       document.getElementById("result").innerHTML = `
         <b>Calculation Result:</b><br>
-        <b>Capacity: ${capacity} kW<br>
-
+        <b>Capacity: ${capacity.toFixed(2)} kW<br>
+        
         <b>Final Rate per kW: ₹${finalRatePerKW.toLocaleString(undefined,{maximumFractionDigits:0})}</b><br>
         <b>Subtotal: ₹${subtotal.toLocaleString()}</b><br>
         <b>GST (8.90%): ₹${gst.toLocaleString(undefined,{maximumFractionDigits:0})}</b><br>
@@ -181,7 +190,7 @@ const items = document.querySelectorAll(".accordion-title");
     }
 
 // Additional Information not shown in calculation
-        //Rate per kW: ₹${ratePerKW.toLocaleString()}<br>
+        // Rate per kW: ₹${ratePerKW.toLocaleString()}<br>
         // Base Cost: ₹${baseCost.toLocaleString()}<br>
         // Building Charge: ₹${additionalBuilding.toLocaleString()}<br>
         // Structure Charge: ₹${additionalStructure.toLocaleString()}<br>
