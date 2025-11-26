@@ -85,3 +85,14 @@
 /* Optional small variant: place at left instead by adding class .left */
 .whatsapp-callback.left { left: 20px; right: auto; }
 /* ------Floating WhatsApp callback button End-------- */
+
+
+/* ======================================Extra Item Navigation Start====================================================================== */
+    /* Extra navigation */
+    nav{display:flex;gap:10px;flex-wrap:wrap}
+    .nav-link{
+      display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:10px;background:var(--glass);text-decoration:none;color:inherit;font-weight:600;border:1px solid rgba(255,255,255,0.02);transition:all 160ms ease;
+    }
+    .nav-link svg{width:18px;height:18px;opacity:0.95}
+    .nav-link .label{white-space:nowrap}
+  /* ======================================Extra Item Navigation End====================================================================== */
