@@ -197,3 +197,20 @@ document.getElementById("units").addEventListener("input", function () {
         // DCR Panel Charge: ₹${additionalPanel.toLocaleString()}<br>
         // Additional Total: ₹${additionalTotal.toLocaleString()}<br>
     // <!-- ---------------Soalr Pant Calculator End------------------------ -->
+
+
+
+// Dropdown for Course Package Start -----------------------------------
+        function toggleDropdown(id) {
+      const content = document.getElementById(id);
+      const icon = document.getElementById(`icon-${id}`);
+
+      if (content.style.display === "block") {
+        content.style.display = "none";
+        icon.classList.remove("rotate");
+      } else {
+        content.style.display = "block";
+        icon.classList.add("rotate");
+      }
+    }
+// Dropdown for Course Package End --------------------------------------
