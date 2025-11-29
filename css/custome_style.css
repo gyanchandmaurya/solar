@@ -96,3 +96,72 @@
     .nav-link svg{width:18px;height:18px;opacity:0.95}
     .nav-link .label{white-space:nowrap}
   /* ======================================Extra Item Navigation End====================================================================== */
+
+
+  /* ---------------------Course Package Start---------------------------- */
+        /* Services Section */
+
+    .service-section {
+      margin-bottom: 40px;
+    }
+
+    .service-section ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .service-section ul li {
+      font-size: 18px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .service-section ul li img {
+      width: 100px;
+      height: auto;
+      margin-right: 10px;
+    }
+
+      /* Dropdownc styling */
+    .dropdownc {
+      margin: 10px 0;
+    }
+    .dropdownc button {
+      width: 100%;
+      background: #2c3e50;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .dropdownc button:hover {
+      background: #0b1cda;
+    }
+    .dropdown-contentcourse {
+      display: none;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    .dropdown-contentcourse p {
+      margin: 0;
+      padding: 5px 0;
+    }
+    .icon {
+      font-size: 14px;
+      transition: transform 0.3s;
+    }
+    .icon.rotate {
+      transform: rotate(180deg);
+    }
+  /* ---------------------Course Package End---------------------------- */
