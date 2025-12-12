@@ -198,7 +198,7 @@
     textarea {
         height: 100px;
     }
-    button {
+    .ebutton {
         width: 97%;
         padding: 12px;
         background: #208604;
@@ -209,7 +209,7 @@
         cursor: pointer;
         margin-top: 15px;
     }
-    button:hover {
+    .ebutton:hover {
         background: #225b04;
     }
     /* ----------------------Enquiry API Form End------------------------ */
