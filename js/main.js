@@ -219,25 +219,5 @@ document.getElementById("units").addEventListener("input", function () {
 
 
 // ----------------------Enquiry API Form Start------------------------
-document.getElementById("enquiryForm").addEventListener("submit", function(event) {
-    event.preventDefault();
 
-    let formData = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        phone: document.getElementById("phone").value,
-        message: document.getElementById("message").value
-    };
-
-    fetch("https://script.google.com/macros/s/AKfycbx5S2HCSMnjMwcrhJw4PQLzAVpom95SFUfoGrolN3sM7pVad3LQi3DVxVYixs5KO_6t/exec", {
-        method: "POST",
-        body: JSON.stringify(formData)
-    })
-    .then(res => res.json())
-    .then(data => {
-        alert("Thank you! Your enquiry has been submitted.");
-        document.getElementById("enquiryForm").reset();
-    })
-    .catch(err => alert("Error: " + err));
-});
 // ----------------------Enquiry API Form End------------------------
