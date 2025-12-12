@@ -910,6 +910,53 @@
     </div>
     <!-- Team End -->
 
+    <!-- ----------------------Enquiry API Form Start------------------------ -->
+    <div class="eform-container">
+        <h2>Enquiry Form</h2>
+
+        <form id="enquiryForm">
+
+            <label>Name</label>
+            <input type="text" id="name" required>
+
+            <label>Email</label>
+            <input type="email" id="email" required>
+
+            <label>Phone</label>
+            <input type="text" id="phone" required>
+
+            <label>Message</label>
+            <textarea id="message" required></textarea>
+
+            <button class="ebutton" type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("enquiryForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        let formData = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            message: document.getElementById("message").value
+        };
+
+        fetch("https://script.google.com/macros/s/AKfycbx5S2HCSMnjMwcrhJw4PQLzAVpom95SFUfoGrolN3sM7pVad3LQi3DVxVYixs5KO_6t/exec", {
+            method: "POST",
+            body: JSON.stringify(formData)
+        })
+        .then(res => res.json())
+        .then(data => {
+            alert("Thank you! Your enquiry has been submitted.");
+            document.getElementById("enquiryForm").reset();
+        })
+        .catch(err => alert("Error: " + err));
+    });
+    </script>
+<!-- ----------------------Enquiry API Form End------------------------ -->
+
     <!-- Testimonial Start -->
     <div class="container-xxl py-5">
         <div class="container">
