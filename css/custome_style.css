@@ -165,3 +165,51 @@
       transform: rotate(180deg);
     }
   /* ---------------------Course Package End---------------------------- */
+
+
+  /* ----------------------Enquiry API Form Start------------------------ */
+
+    .eform-container {
+        width: 100%;
+        max-width: 520px;
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    .eform-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #a30606;
+    }
+    input, textarea {
+        width: 97%;
+        padding: 12px;
+        margin-top: 8px;
+        border: 1px solid #bcd4ff;
+        border-radius: 8px;
+        outline: none;
+    }
+    input:focus, textarea:focus {
+        border-color: #004aad;
+    }
+    textarea {
+        height: 100px;
+    }
+    button {
+        width: 97%;
+        padding: 12px;
+        background: #208604;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+    button:hover {
+        background: #225b04;
+    }
+    /* ----------------------Enquiry API Form End------------------------ */
