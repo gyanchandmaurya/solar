@@ -168,10 +168,9 @@
 
 
   /* ----------------------Enquiry API Form Start------------------------ */
-
     .eform-container {
         width: 100%;
-        max-width: 520px;
+        max-width: 450px;
         background: white;
         padding: 25px;
         border-radius: 15px;
