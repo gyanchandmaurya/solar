@@ -175,6 +175,7 @@
         padding: 25px;
         border-radius: 15px;
         box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        margin: 0 auto;
     }
     .eform-container h2 {
         text-align: center;
@@ -207,6 +208,6 @@
         margin-top: 15px;
     }
     .ebutton:hover {
-        background: #225b04;
+        background: #a03b05;
     }
     /* ----------------------Enquiry API Form End------------------------ */
