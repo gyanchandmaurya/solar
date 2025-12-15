@@ -197,12 +197,12 @@
         height: 100px;
     }
     .ebutton {
-        width: 97%;
+        width: 50%;
         padding: 12px;
         background: #208604;
         color: white;
         border: none;
-        border-radius: 8px;
+        border-radius: 30px;
         font-size: 18px;
         cursor: pointer;
         margin-top: 15px;
