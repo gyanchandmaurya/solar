@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free_Site_Survey</title>
+    <style>
+        /* CSS STYLING */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: top;
+            min-height: 100%;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+            font-weight: 600;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensures padding doesn't affect width */
+            font-size: 14px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        #status {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Book Free Site Survey</h2>
+        <form id="contactForm">
+            
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="yourname@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" placeholder="City or Area" required>
+            </div>
+
+            <div class="form-group">
+                <label for="property_type">Property Type</label>
+                <select id="property_type" name="property_type" required>
+                    <option value="" disabled selected>Select Property Type</option>
+                    <option value="Residential">Residential</option>
+                    <option value="Housing Society">Housing Society</option>
+                    <option value="Commercial">Commercial</option>
+                    <option value="Office">Office</option>
+                    <option value="Manufacturing Unit">Manufacturing Unit</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="bill">Monthly Electricity Bill (Avg)</label>
+                <input type="number" id="bill" name="bill" placeholder="e.g. 5000" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" placeholder="Any specific requirements?"></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn">Submit Inquiry</button>
+            <div id="status"></div>
+        </form>
+    </div>
+
+    <script>
+        // --- JAVASCRIPT LOGIC ---
+        
+        // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxGT-MqnRIvx4O1KJxdSO0ovLqMwwL6rqXUti5Gcd3fE5vtT05tQ_Xx4kwatOzD7cLA/exec'; 
+
+        const form = document.forms['contactForm'];
+        const submitBtn = document.getElementById('submitBtn');
+        const statusTxt = document.getElementById('status');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            // 1. Change button state to loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "Sending...";
+            statusTxt.innerHTML = "";
+
+            // 2. Prepare data
+            const formData = new FormData(form);
+
+            // 3. Send data to Google Script
+            fetch(scriptURL, { method: 'POST', body: formData})
+                .then(response => {
+                    // Reset Form
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = "Submit Inquiry";
+                    statusTxt.innerHTML = "Thank you! Your details have been submitted. Our Executive will contact you shortly";
+                    statusTxt.className = "success";
+                    form.reset();
+                })
+                .catch(error => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = "Submit Inquiry";
+                    statusTxt.innerHTML = "Error! Something went wrong.";
+                    statusTxt.className = "error";
+                    console.error('Error!', error.message);
+                });
+        });
+    </script>
+
+</body>
+</html>
