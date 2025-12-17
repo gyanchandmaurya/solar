@@ -25,7 +25,7 @@
         }
         h2 {
             text-align: center;
-            color: #333;
+            color: #ff0101;
             margin-bottom: 20px;
         }
         .form-group {
@@ -49,15 +49,16 @@
             resize: vertical;
         }
         button {
-            width: 100%;
+            width: 50%;
             padding: 12px;
             background-color: #28a745;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 30px;
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s;
+            margin-left: 25%;
         }
         button:hover {
             background-color: #218838;
@@ -82,22 +83,22 @@
         <form id="contactForm">
             
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+                <!-- <label for="name">Name</label> -->
+                <input type="text" id="name" name="name" placeholder="Enter Your Full Name" required>
             </div>
 
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="yourname@example.com" required>
+                <!-- <label for="email">Email</label> -->
+                <input type="email" id="email" name="email" placeholder="Enter Your E-Mail" required>
             </div>
 
             <div class="form-group">
-                <label for="location">Location</label>
-                <input type="text" id="location" name="location" placeholder="City or Area" required>
+                <!-- <label for="location">Location</label> -->
+                <input type="text" id="location" name="location" placeholder="Enter Your City or Area" required>
             </div>
 
             <div class="form-group">
-                <label for="property_type">Property Type</label>
+                <!-- <label for="property_type">Property Type</label> -->
                 <select id="property_type" name="property_type" required>
                     <option value="" disabled selected>Select Property Type</option>
                     <option value="Residential">Residential</option>
@@ -109,13 +110,13 @@
             </div>
 
             <div class="form-group">
-                <label for="bill">Monthly Electricity Bill (Avg)</label>
-                <input type="number" id="bill" name="bill" placeholder="e.g. 5000" required>
+                <!-- <label for="bill">Monthly Electricity Bill (Avg)</label> -->
+                <input type="number" id="bill" name="bill" placeholder="Enter Your  Monthly Electricity Bill (Avg) e.g. 5000" required>
             </div>
 
             <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="4" placeholder="Any specific requirements?"></textarea>
+                <!-- <label for="message">Message</label> -->
+                <textarea id="message" name="message" rows="4" placeholder="Write Any specific requirements?"></textarea>
             </div>
 
             <button type="submit" id="submitBtn">Submit Inquiry</button>
