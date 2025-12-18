@@ -962,52 +962,97 @@
     </div>
     <!-- Testimonial End -->
 
-    <!-- ----------------------Enquiry API Form Start------------------------ -->
-    <div class="eform-container" id="contactus"><br><br>
-        <h2>Contact Us</h2>
+    <!-- ----------------------Enquiry Solar Site Survey Form Start------------------------ -->
+    <div class="survey_form" id="contactus">
+    <div class="form-container"><br><br>
+        <h2>Book Free Site Survey</h2>
+        <form id="contactForm">
+            
+            <div class="form-group">
+                <!-- <label for="name">Name</label> -->
+                <input type="text" id="name" name="name" placeholder="Enter Your Full Name" required>
+            </div>
 
-        <form id="enquiryForm">
+            <div class="form-group">
+                <!-- <label for="email">Email</label> -->
+                <input type="email" id="email" name="email" placeholder="Enter Your E-Mail" required>
+            </div>
 
-            <label>Name</label>
-            <input type="text" placeholder="Enter your Name" id="name" required>
+            <div class="form-group">
+                <!-- <label for="location">Location</label> -->
+                <input type="text" id="location" name="location" placeholder="Enter Your City or Area" required>
+            </div>
 
-            <label>Email</label>
-            <input type="email" placeholder="Enter your E-Mail" id="email" required>
+            <div class="form-group">
+                <!-- <label for="property_type">Property Type</label> -->
+                <select id="property_type" name="property_type" required>
+                    <option value="" disabled selected>Select Property Type</option>
+                    <option value="Residential">Residential</option>
+                    <option value="Housing Society">Housing Society</option>
+                    <option value="Manufacturing Unit">Manufacturing Unit</option>
+                    <option value="Commercial">Commercial</option>
+                    <option value="Office">Office</option>
+                    <option value="Manufacturing Unit">Other</option>
+                </select>
+            </div>
 
-            <label>Phone</label>
-            <input type="text" placeholder="Enter Your Mobile No." id="phone" required>
+            <div class="form-group">
+                <!-- <label for="bill">Monthly Electricity Bill (Avg)</label> -->
+                <input type="number" id="bill" name="bill" placeholder="Enter Your  Monthly Electricity Bill (Avg) e.g. 5000" required>
+            </div>
 
-            <label>Message</label>
-            <textarea id="message" placeholder="Write your requirement if any, (Solar Project, Solar AMC etc)" required></textarea>
+            <div class="form-group">
+                <!-- <label for="message">Message</label> -->
+                <textarea id="message" name="message" rows="4" placeholder="Write Any specific requirements?"></textarea>
+            </div>
 
-            <button class="ebutton" type="submit">Submit</button>
+            <button class="survey_button" type="submit" id="submitBtn">Submit Inquiry</button>
+            <div id="status"></div>
         </form>
+    </div>
     </div>
 
     <script>
-        document.getElementById("enquiryForm").addEventListener("submit", function(event) {
-        event.preventDefault();
+        // --- JAVASCRIPT LOGIC ---
+        
+        // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyJFq6-Zeguntna0TXjhyELm2xyJ7Ghvq-Aj1et7Vr4eNwNrflUQqCFfKMl2sMqYWT-/exec'; 
 
-        let formData = {
-            name: document.getElementById("name").value,
-            email: document.getElementById("email").value,
-            phone: document.getElementById("phone").value,
-            message: document.getElementById("message").value
-        };
+        const form = document.forms['contactForm'];
+        const submitBtn = document.getElementById('submitBtn');
+        const statusTxt = document.getElementById('status');
 
-        fetch("https://script.google.com/macros/s/AKfycbx5S2HCSMnjMwcrhJw4PQLzAVpom95SFUfoGrolN3sM7pVad3LQi3DVxVYixs5KO_6t/exec", {
-            method: "POST",
-            body: JSON.stringify(formData)
-        })
-        .then(res => res.json())
-        .then(data => {
-            alert("Thank you! Your enquiry has been submitted.");
-            document.getElementById("enquiryForm").reset();
-        })
-        .catch(err => alert("Error: " + err));
-    });
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            // 1. Change button state to loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "Sending...";
+            statusTxt.innerHTML = "";
+
+            // 2. Prepare data
+            const formData = new FormData(form);
+
+            // 3. Send data to Google Script
+            fetch(scriptURL, { method: 'POST', body: formData})
+                .then(response => {
+                    // Reset Form
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = "Submit Inquiry";
+                    statusTxt.innerHTML = "Thank you! Your details have been submitted. Our Executive will contact you shortly";
+                    statusTxt.className = "success";
+                    form.reset();
+                })
+                .catch(error => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = "Submit Inquiry";
+                    statusTxt.innerHTML = "Error! Something went wrong.";
+                    statusTxt.className = "error";
+                    console.error('Error!', error.message);
+                });
+        });
     </script>
-<!-- ----------------------Enquiry API Form End------------------------ -->
+    <!-- ----------------------Enquiry Solar Site Survey Form End------------------------ -->
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-body footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
