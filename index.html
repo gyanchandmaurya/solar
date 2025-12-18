@@ -1150,3 +1150,51 @@
 </body>
 
 </html>
+
+
+<!-- // --- COPY THIS INTO GOOGLE APPS SCRIPT ---
+
+function doPost(e) {
+  try {
+    // 1. Get the active sheet
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    
+    // 2. Extract data from the form submission
+    var data = e.parameter;
+    var timestamp = new Date();
+    
+    // 3. Append data to the Google Sheet
+    sheet.appendRow([
+      timestamp,
+      data.name,
+      data.email,
+      data.location,
+      data.property_type,
+      data.bill,
+      data.message
+    ]);
+    
+    // 4. Send Email Notification
+    var emailBody = "New Enquiry for Solar Site Survey:<br><br>" +
+                    "<b>Name:</b> " + data.name + "<br>" +
+                    "<b>Email:</b> " + data.email + "<br>" +
+                    "<b>Location:</b> " + data.location + "<br>" +
+                    "<b>Type:</b> " + data.property_type + "<br>" +
+                    "<b>Bill:</b> " + data.bill + "<br>" +
+                    "<b>Message:</b> " + data.message;
+                    
+    MailApp.sendEmail({
+      to: "solarshakti.in@gmail.com",
+      subject: "New Enquiry Survey Lead: " + data.name,
+      htmlBody: emailBody
+    });
+
+    // 5. Return success message
+    return ContentService.createTextOutput(JSON.stringify({ "result": "success" }))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({ "result": "error", "error": error.message }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+} -->
