@@ -135,6 +135,8 @@ document.getElementById("units").addEventListener("input", function () {
       if (capacity >= 21 && capacity <= 50) return 44000;
       if (capacity >= 51 && capacity <= 100) return 42000;
       if (capacity >= 101 && capacity <= 200) return 38000;
+      if (capacity >= 101 && capacity <= 500) return 36000;
+      if (capacity >= 101 && capacity <= 10000) return 34000;
       return 0;
     }
 
@@ -148,7 +150,7 @@ document.getElementById("units").addEventListener("input", function () {
     function calculate() {
       let capacity = parseFloat(document.getElementById("capacity").value);
 
-      if (isNaN(capacity) || capacity < 1 || capacity > 200) {
+      if (isNaN(capacity) || capacity < 1 || capacity > 1000) {
         document.getElementById("result").innerHTML = "<b>Please enter valid capacity (auto or manual).</b>";
         return;
       }
