@@ -134,9 +134,9 @@ document.getElementById("units").addEventListener("input", function () {
       if (capacity >= 10 && capacity <= 20) return 46000;
       if (capacity >= 21 && capacity <= 50) return 44000;
       if (capacity >= 51 && capacity <= 100) return 42000;
-      if (capacity >= 101 && capacity <= 200) return 38000;
-      if (capacity >= 101 && capacity <= 500) return 36000;
-      if (capacity >= 101 && capacity <= 10000) return 34000;
+      if (capacity >= 101 && capacity <= 150) return 38000;
+      if (capacity >= 151 && capacity <= 299) return 34000;
+      if (capacity >= 300 && capacity <= 10000) return 30000;
       return 0;
     }
 
