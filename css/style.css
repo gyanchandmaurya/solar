@@ -40,16 +40,14 @@
 
 #company_logo {
   height: 70px;
-  width: 70px;
+  width: 100px;
 /* width: 240px; */
   position:relative;
   top: 2px;
   left: 5px;
   border-radius: 10%;
   display: inline-block; /* centers inside text-align */
-  /* background-image: url("https://iili.io/KankYWF.png"); */
-   background-image: url("https://freeimage.host/i/KYHTphQ");
-    /* https://freeimage.host/i/KYHTphQ */
+  background-image: url("https://iili.io/KankYWF.png");
   /* background-image: url("https://iili.io/KYHTphQ.png"); */
   background-size: cover;
   background-position: center;
