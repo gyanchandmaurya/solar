@@ -48,7 +48,7 @@
   border-radius: 10%;
   display: inline-block; /* centers inside text-align */
   /* background-image: url("https://iili.io/KankYWF.png"); */
-    background-image: url("/company_logo.png");
+    background-image: url("img/company_logo.png");
   /* background-image: url("https://iili.io/KYHTphQ.png"); */
   background-size: cover;
   background-position: center;
