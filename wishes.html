@@ -194,8 +194,8 @@
             <div class="form-group">
                 <select id="wishes_type" name="wishes_type" required>
                     <option value="" disabled selected>Select Wishes Type</option>
-                    <option value="Birthday">Birthday</option>
-                    <option value="Marriage Anniversary">Marriage Anniversary</option>
+                    <option value="Happy Birthday">Birthday</option>
+                    <option value="Happy Marriage Anniversary">Marriage Anniversary</option>
                 </select>
             </div>
             
@@ -219,23 +219,22 @@
                 <input type="date" id="date" name="date" placeholder="" required>
             </div>
 
-            <div class="form-group">
-                <!-- <label for="subject">Subject</label> -->
+            <!-- <div class="form-group">
                 <input type="text" id="subject" name="subject" placeholder="Subject" required>
-            </div>
+            </div> -->
 
             <div class="form-group">
                 <!-- <label for="wishemessage">Message</label> -->
                 <input type="text" id="wishemessage" name="wishemessage" placeholder="Your Wishes Message" required>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <select id="wishes_img" name="wishes_img" required>
                     <option value="" disabled selected>Select Wishes Image</option>
                     <option value="1CeBSjf7-bPWFiEVsp30KM47bHfM6R_0t">Birthday Image</option>
                     <option value="1Ev7sFritXenlCNYKnX64fruVrlVRKG9O">Marraige Anniversary Image</option>
                 </select>
-            </div>
+            </div> -->
 
             <div class="form-group">
                 <!-- <label for="message">Message</label> -->
@@ -387,3 +386,126 @@
 </body>
 
 </html>
+
+
+<!-- // 1-------Send Wishes by checking condotion by Wishes Type Image ID Start-----------------
+function sendFormattedWishes() {
+  // const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Wishes");
+  const data = sheet.getDataRange().getValues();
+  const today = new Date();
+  const currentMonth = today.getMonth() + 1;
+  const currentDate = today.getDate();
+
+  for (var i = 1; i < data.length; i++) {
+    let type = data[i][1];      // Column B
+    let name = data[i][2];      // Column C
+    let email = data[i][3];     // Column D
+    let dateVal = new Date(data[i][5]); // Column F
+    let subject = data[i][6];   // Column G
+    let message = data[i][7];   // Column H
+    let imageFileId = data[i][8]; // Column I (The Image ID you added)
+
+    if (dateVal.getMonth() + 1 === currentMonth && dateVal.getDate() === currentDate) {
+      
+      // --- NEW LOGIC: Select Image ID based on Column B ---
+      let imageFileId = '';
+      if (type === "Birthday") {
+        imageFileId = '1CeBSjf7-bPWFiEVsp30KM47bHfM6R_0t';
+      } else if (type === "Marriage Anniversary") {
+        imageFileId = '1Ev7sFritXenlCNYKnX64fruVrlVRKG9O';
+      }
+
+      // Fetch the specific image blob for this row
+      let imageBlob = DriveApp.getFileById(imageFileId).getBlob().setName("wishImage");
+      // ----------------------------------------------------
+
+      // HTML Formatting: Using <b> for bold and <br> for new lines
+      let htmlBody = `
+        <div style="font-family: Arial, sans-serif; color: #333;">
+          <h2 style="color: #8B028F;">Happy ${type}!</h2>
+          <p>Dear <b>${name}</b>,</p>
+          <p><b style="color: #0008E0;">${message.replace(/\n/g, '<br>')}</b></p>
+          <br>
+          <img src="cid:wishBanner" style="width:100%; max-width:600px; border-radius:10px;" />
+          <p>Best Regards,<br><b>Gyanchand Maurya</b><br><b>Mobile:</b>9220973200<br>www.solarshakti.in</p>
+        </div>
+      `;
+
+      GmailApp.sendEmail(email, subject, "Please enable HTML to view this message.", {
+        htmlBody: htmlBody,
+        inlineImages: {
+          wishBanner: imageBlob
+        },
+        cc: "solarshakti.in@gmail.com"
+      });
+    }
+  }
+}
+// 1-------Send Wishes by checking condotion by Wishes Type Image ID End----------------- -->
+
+
+
+
+
+
+
+<!-- // 2------------------------------Send Wishes by Column Image ID Start----------------------------------------------------------
+function sendFormattedWishes() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Wishes");   //---Get Data by Sheet Name--- any one
+//  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();           //---Get Data by Active Sheet ---
+  const data = sheet.getDataRange().getValues();
+  const today = new Date();
+  const currentMonth = today.getMonth() + 1;
+  const currentDate = today.getDate();
+
+  for (var i = 1; i < data.length; i++) {
+    let type = data[i][1];      // Column B
+    let name = data[i][2];      // Column C
+    let email = data[i][3];     // Column D
+    let dateVal = new Date(data[i][5]); // Column F
+    let subject = data[i][6];   // Column G
+    let message = data[i][7];   // Column H
+    let imageFileId = data[i][8]; // Column I (The Image ID you added)
+
+    // Check if it's the right date and that an Image ID exists in Column H
+    if (dateVal.getMonth() + 1 === currentMonth && dateVal.getDate() === currentDate) {
+      
+      // Attempt to fetch the image from Column H
+      let imageBlob;
+      try {
+        if (imageFileId) {
+          imageBlob = DriveApp.getFileById(imageFileId).getBlob().setName("wishImage");
+        } else {
+          // Skip if no image ID is provided for this row
+          console.warn("No Image ID found for: " + name);
+          continue; 
+        }
+      } catch (e) {
+        console.error("Error fetching image for " + name + ": " + e.message);
+        continue;
+      }
+
+      // HTML Body
+      let htmlBody = `
+        <div style="font-family: Arial, sans-serif; color: #333;">
+          <h2 style="color: #8B028F;">Happy ${type}!</h2>
+          <p>Dear <b>${name}</b>,</p>
+          <p><b style="color: #0008E0;">${message.replace(/\n/g, '<br>')}</b></p>
+          <br>
+          <img src="cid:wishBanner" style="width:100%; max-width:600px; border-radius:10px;" />
+          <p>Best Regards,<br><b>Gyanchand Maurya</b><br><b>Mobile:</b>9220973200<br>www.solarshakti.in<br>mauryag.vercel.app</p>
+        </div>
+      `;
+
+      GmailApp.sendEmail(email, subject, "Please enable HTML to view this message.", {
+        htmlBody: htmlBody,
+        inlineImages: {
+          wishBanner: imageBlob
+        },
+        bcc: "solarshakti.in@gmail.com"
+      });
+    }
+  }
+}
+// 2------------------------------Send Wishes by Column Image ID End---------------------------------------------------------- -->
