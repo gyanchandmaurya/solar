@@ -444,3 +444,100 @@ function sendFormattedWishes() {
   }
 }
 // 2------------------------------Send Wishes by Column Image ID End---------------------------------------------------------- -->
+
+
+
+
+<!-- // 3 ------------------------------Send Wishes by Column Image ID Start--------------------------------------------------------
+function sendFormattedWishes() {
+  // const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Wishes");
+  const data = sheet.getDataRange().getValues();
+  const today = new Date();
+  const currentMonth = today.getMonth() + 1;
+  const currentDate = today.getDate();
+
+  for (var i = 1; i < data.length; i++) {
+    let type = data[i][1];      // Column B
+    let name = data[i][2];      // Column C
+    let email = data[i][3];     // Column D
+    let dateVal = new Date(data[i][5]); // Column F
+    let subject = data[i][1];   // Column G
+    let message = data[i][7];   // Column H
+    // let imageFileId = data[i][8]; // Column I (The Image ID you added)
+
+    if (dateVal.getMonth() + 1 === currentMonth && dateVal.getDate() === currentDate) {
+      
+      // --- NEW LOGIC: Select Image ID based on Column B ---
+      let imageFileId = '';
+      if (type === "Happy Birthday") {
+        imageFileId = '1CeBSjf7-bPWFiEVsp30KM47bHfM6R_0t';
+      } else if (type === "Happy Marriage Anniversary") {
+        imageFileId = '1Ev7sFritXenlCNYKnX64fruVrlVRKG9O';
+      }
+
+      // Fetch the specific image blob for this row
+      let imageBlob = DriveApp.getFileById(imageFileId).getBlob().setName("wishImage");
+      // ----------------------------------------------------
+
+      // -------------HTML Body Message Formatting: Start----------
+      let htmlBody = `
+        <div style="background-color: #f4f4f4; padding: 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+          <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            
+            <tr>
+              <td style="padding: 40px 30px;">
+                <h2 style="color: #9D13D4; margin-top: 0; font-size: 24px;"> ${type}! <br> Dear ${name},</h2>                
+                <p style="font-size: 16px; line-height: 1.6; color: #000BBD;">
+                  ${message.replace(/\n/g, '<br>')}
+                </p>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding: 0;">
+                <img src="cid:wishBanner" alt="Wishes" style="width: 100%; display: block; border-bottom: 4px solid #16B300;" />
+              </td>
+            </tr>
+            <br>
+
+            <tr>
+              <td style="padding: 20px 30px; background-color: #f9f9f9; border-top: 1px solid #eeeeee;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tr>
+                    <td>
+                      <p style="margin: 0; font-size: 14px; color: #333;">Best Regards,</p>
+                      <p style="margin: 5px 0 0 0; font-size: 16px; color: #16B300; font-weight: bold;">Gyanchand Maurya</p>
+                      <p style="margin: 0; font-size: 13px; color: #666;">
+                        <strong>Mobile:</strong> <a href="tel:+919220973200" style="text-decoration: none; color: #16B300;">9220973200</a><br>
+                        <a href="https://solarshakti.in" style="text-decoration: none; color: #16B300; font-weight: 500;">www.solarshakti.in</a>
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+          
+          <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+            <tr>
+              <td style="padding: 20px; text-align: center; font-size: 12px; color: #999;">
+                © ${new Date().getFullYear()} Solar Shakti. All rights reserved.
+              </td>
+            </tr>
+          </table>
+        </div>
+      `;
+      // -------------HTML Body Message Formatting: End----------
+
+      GmailApp.sendEmail(email, subject, "Please enable HTML to view this message.", {
+        htmlBody: htmlBody,
+        inlineImages: {
+          wishBanner: imageBlob
+        },
+        bcc: "solarshakti.in@gmail.com"
+      });
+    }
+  }
+}
+// 3 ------------------------------Send Wishes by Column Image ID End---------------------------------------------------------- -->
