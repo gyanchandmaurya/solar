@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Rajesh Maurya</title>
+    <link rel="shortcut icon" href="https://www.spinny.com/blog/wp-content/uploads/2024/04/New-Maruti-Swift-jpg.webp" type="image/x-icon">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <style>
+/********** Template CSS **********/
+:root {
+    --primary: #32C36C;
+    --light: #F6F7F8;
+    --dark: #1A2A36;
+}
+/* ----------------------Enquiry Solar Site Survey Form Start------------------------ */
+        /* SURVEY FORM CSS STYLING */
+        .wishes_form{
+          display: flex;
+          justify-content: center;
+        }
+        .form-container {
+            background-color: #f4eaea;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+            border-style: solid;
+            border-width: 2px;
+            border-color: darkmagenta;
+        }
+        h2 {
+            text-align: center;
+            color: blue;
+            margin-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+            font-weight: 600;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensures padding doesn't affect width */
+            font-size: 14px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .wishes_button {
+            width: 50%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: 25%;
+        }
+        .wishes_button:hover {
+            background-color: #218838;
+        }
+        .wishes_button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        #status {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .success { color: green; }
+        .error { color: red; }
+
+        #chat{
+          height: 50px;
+          width: 50px;
+          border-radius: 10%;
+          position: fixed;
+          bottom: 10px;
+          left: 10px;
+          z-index: 1000;
+          background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png");
+          background-size: cover;
+        }
+
+</style>
+</head>
+
+<body>
+    <!-- ----------------------Form Start-------------------------- -->
+    <div class="wishes_form" id="contactus">
+    <div class="form-container">
+        <h2>Add Your Leads</h2>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Referral Name*</label>
+                <select id="referral_code" name="referral_code" required>
+                    <option value="Dhananjay Kashyap 8454000510">Dhananjay Kashyap</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <select id="lead_type" name="lead_type" required>
+                    <option value="" disabled selected>Select Vehicles Type*</option>
+                    <option value="Private Car">Private Car</option>
+                    <option value="Taxi & CAB">Taxi & CAB</option>
+                    <option value="Autos">Autos</option>
+                    <option value="Goods Carrying Vehicles">Goods Carrying Vehicles</option>
+                    <option value="Buses & Coaches">Buses & Coaches</option>
+                    <option value="Two Wheelers">Bike & Scooty</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <input type="text" id="owner_name" name="owner_name" placeholder="Enter Name of Vehicle Owner*" oninput="this.value = this.value.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());" required>
+            </div>
+
+            <div class="form-group">
+                <input type="tel" id="tel" name="tel" placeholder="Enter 10 Digit Mobile Number of Vehicle Owner*" pattern="[0-9]{10}" maxlength="10" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,10);" required>
+            </div>
+
+            <div class="form-group">
+                <input type="text" id="vehicle_no" name="vehicle_no" placeholder="Enter Vehicle Number*" 
+                    style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase();"required>
+            </div>
+
+            <div class="form-group">
+                <label for="renewal_date">Date of Renewal*</label>
+                <input type="date" id="renewal_date" name="renewal_date" placeholder="" required>
+            </div>
+
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Enter Your E-Mail (optional)">
+            </div>
+
+            <div class="form-group">
+                <!-- <label for="message">Message</label> -->
+                <textarea id="message" name="message" rows="1" placeholder="Write your remark (optional) "></textarea>
+            </div>
+
+            <button class="wishes_button" type="submit" id="submitBtn">Save Event</button>
+            <div id="status"></div>
+        </form>
+    </div>
+    </div>
+
+    <a href="https://wa.me/9220973200" target="_blank"><div id="chat"></div> </a>
+
+    <script>
+        // --- JAVASCRIPT LOGIC ---
+        
+        // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyNUo4U803iecllePie6vlfOhjYSs3TC41rXX7qhLdtPYoCli4dmLyGSeVJWoI2VYsw/exec'; 
+
+        const form = document.forms['contactForm'];
+        const submitBtn = document.getElementById('submitBtn');
+        const statusTxt = document.getElementById('status');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            // 1. Change button state to loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "Sending...";
+            statusTxt.innerHTML = "";
+
+            // 2. Prepare data
+            const formData = new FormData(form);
+
+            // 3. Send data to Google Script
+            fetch(scriptURL, { method: 'POST', body: formData})
+                .then(response => {
+                    // Reset Form
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = "Submit Inquiry";
+                    statusTxt.innerHTML = "Thank you! Your details have been submitted.";
+                    statusTxt.className = "success";
+                    form.reset();
+                })
+                .catch(error => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = "Submit Inquiry";
+                    statusTxt.innerHTML = "Error! Something went wrong.";
+                    statusTxt.className = "error";
+                    console.error('Error!', error.message);
+                });
+        });
+    </script>
+    <!-- ----------------------Form End-------------------------- -->
+</body>
+</html>
