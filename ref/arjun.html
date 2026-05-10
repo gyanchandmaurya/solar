@@ -3,202 +3,375 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Lead Management System</title>
-    <link rel="shortcut icon" href="https://www.spinny.com/blog/wp-content/uploads/2024/04/New-Maruti-Swift-jpg.webp" type="image/x-icon">
+    <title>Get Lowest Vehicle Insurance Renewal Quote</title>
+
+    <link rel="shortcut icon"
+        href="https://www.spinny.com/blog/wp-content/uploads/2024/04/New-Maruti-Swift-jpg.webp"
+        type="image/x-icon">
+
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+
+    <!-- SEO -->
+    <meta name="keywords"
+        content="vehicle insurance renewal, bike insurance, car insurance, best insurance offer, lowest premium">
+    <meta name="description"
+        content="Renew your vehicle insurance at the best price. Get instant quotes, special discounts, and hassle-free renewal support.">
+
     <style>
-/********** Template CSS **********/
-:root {
-    --primary: #32C36C;
-    --light: #F6F7F8;
-    --dark: #1A2A36;
-}
-/* ----------------------Enquiry Solar Site Survey Form Start------------------------ */
-        /* SURVEY FORM CSS STYLING */
-        .wishes_form{
-          display: flex;
-          justify-content: center;
+        /********** Template CSS **********/
+        :root {
+            --primary: #32C36C;
+            --light: #F6F7F8;
+            --dark: #1A2A36;
         }
-        .form-container {
-            background-color: #f4eaea;
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+        }
+
+        /* ---------------------- FORM SECTION ------------------------ */
+
+        .wishes_form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 450px;
-            border-style: solid;
-            border-width: 2px;
-            border-color: darkmagenta;
         }
+
+        .form-container {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            max-width: 460px;
+            border: 3px solid #32C36C;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-badge {
+            background: #ff0000;
+            color: white;
+            padding: 8px 14px;
+            font-size: 13px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 0px;
+            font-weight: bold;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0.8;
+            }
+        }
+
         h2 {
             text-align: center;
-            color: blue;
-            margin-bottom: 10px;
+            color: #0f172a;
+            margin-bottom: 8px;
+            font-size: 28px;
         }
+
+        .subtitle {
+            text-align: center;
+            color: #555;
+            font-size: 15px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            color: #16a34a;
+            font-weight: bold;
+        }
+
+        .benefits {
+            background: #f0fdf4;
+            border: 1px dashed #22c55e;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            color: #14532d;
+        }
+
+        .benefits div {
+            margin-bottom: 8px;
+        }
+
         .form-group {
             margin-bottom: 15px;
         }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #666;
-            font-weight: 600;
-        }
-        input, select, textarea {
+
+        input,
+        select,
+        textarea {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box; /* Ensures padding doesn't affect width */
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            box-sizing: border-box;
             font-size: 14px;
+            transition: 0.3s;
         }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #32C36C;
+            outline: none;
+            box-shadow: 0 0 5px rgba(50, 195, 108, 0.4);
+        }
+
         textarea {
             resize: vertical;
         }
+
         .wishes_button {
-            width: 50%;
-            padding: 12px;
-            background-color: #28a745;
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #16a34a, #22c55e);
             color: white;
             border: none;
-            border-radius: 30px;
-            font-size: 16px;
+            border-radius: 40px;
+            font-size: 17px;
+            font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s;
-            margin-left: 25%;
+            transition: 0.3s;
         }
+
         .wishes_button:hover {
-            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(34, 197, 94, 0.4);
         }
+
         .wishes_button:disabled {
             background-color: #ccc;
             cursor: not-allowed;
         }
+
         #status {
             margin-top: 15px;
             text-align: center;
             font-size: 14px;
-        }
-        .success { color: green; }
-        .error { color: red; }
-
-        #chat{
-          height: 50px;
-          width: 50px;
-          border-radius: 10%;
-          position: fixed;
-          bottom: 10px;
-          left: 10px;
-          z-index: 1000;
-          background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png");
-          background-size: cover;
+            font-weight: 600;
         }
 
-</style>
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .trust-text {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        #chat {
+            height: 60px;
+            width: 60px;
+            border-radius: 0%;
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            z-index: 1000;
+            background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png");
+            background-size: cover;
+            /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); */
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 24px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- ----------------------Form Start-------------------------- -->
+
+    <!-- ---------------------- FORM START -------------------------- -->
+
     <div class="wishes_form" id="contactus">
-    <div class="form-container">
-        <h2>Add Your Leads</h2>
-        <form id="contactForm">
-            <div class="form-group">
-                <label for="name">Referral Name*</label>
-                <select id="referral_code" name="referral_code" required>
-                    <option value="Arjun Jaiswal 9321959803">Arjun Jaiswal</option>
-                </select>
+
+        <div class="form-container">
+
+            <div class="offer-badge">
+                🎉 LIMITED TIME OFFER - SAVE UP TO 40%
             </div>
 
-            <div class="form-group">
-                <select id="lead_type" name="lead_type" required>
-                    <option value="" disabled selected>Select Vehicle Type*</option>
-                    <option value="Private Car">🚗 Private Car</option>
-                    <option value="Taxi & CAB">🚖 Taxi & CAB</option>
-                    <option value="Autos">🛺 Auto Rickshaw</option>
-                    <option value="Goods Carrying Vehicles">🚚 Goods Vehicle</option>
-                    <option value="Buses & Coaches">🚌 Bus & Coach</option>
-                    <option value="Two Wheelers">🏍 Bike & Scooty</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <input type="text" id="owner_name" name="owner_name" placeholder="Enter Name of Vehicle Owner*" oninput="this.value = this.value.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());" required>
+            <h2>Renew Vehicle Insurance Instantly</h2>
+
+            <p class="subtitle">
+                Compare top insurance companies & get the
+                <span class="highlight">lowest premium quote.</span>
+            </p>
+
+            <div class="benefits">
+                <div>✅ Instant Renewal Assistance</div>
+                <div>✅ Lowest Premium Guarantee</div>
+                <div>✅ Cashless Claim Support</div>
+                <div>✅ Free Reminder Before Expiry</div>
             </div>
 
-            <div class="form-group">
-                <input type="tel" id="tel" name="tel" placeholder="Enter 10 Digit Mobile Number of Vehicle Owner*" pattern="[0-9]{10}" maxlength="10" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,10);" required>
+            <form id="contactForm">
+
+                <div class="form-group">
+                    <select id="referral_code" name="referral_code" required>
+                        <option value="Arjun Jaiswal 9321959803">Arjun Jaiswal</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <select id="lead_type" name="lead_type" required>
+                        <option value="" disabled selected>Select Vehicle Type*</option>
+                        <option value="Private Car">🚗 Private Car</option>
+                        <option value="Taxi & CAB">🚖 Taxi & CAB</option>
+                        <option value="Autos">🛺 Auto Rickshaw</option>
+                        <option value="Goods Carrying Vehicles">🚚 Goods Vehicle</option>
+                        <option value="Buses & Coaches">🚌 Bus & Coach</option>
+                        <option value="Two Wheelers">🏍 Bike & Scooty</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="owner_name" name="owner_name"
+                        placeholder="Enter Full Name*"
+                        oninput="this.value = this.value.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <input type="tel" id="tel" name="tel"
+                        placeholder="Enter 10 Digit Mobile Number*"
+                        pattern="[0-9]{10}" maxlength="10" inputmode="numeric"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,10);"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="vehicle_no" name="vehicle_no"
+                        placeholder="Enter Vehicle Number*"
+                        style="text-transform: uppercase;"
+                        oninput="this.value = this.value.toUpperCase();"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="renewal_date">Renewal Date*</label>
+                    <input type="date" id="renewal_date" name="renewal_date" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" id="email" name="email"
+                        placeholder="Enter Email Address (Optional)">
+                </div>
+
+                <div class="form-group">
+                    <textarea id="message" name="message" rows="2"
+                        placeholder="Any special requirement? (Optional)"></textarea>
+                </div>
+
+                <button class="wishes_button" type="submit" id="submitBtn">
+                    🚀 Get Best Insurance Quote
+                </button>
+
+                <div id="status"></div>
+
+            </form>
+
+            <div class="trust-text">
+                🔒 Your details are 100% safe & secure
             </div>
 
-            <div class="form-group">
-                <input type="text" id="vehicle_no" name="vehicle_no" placeholder="Enter Vehicle Number*" 
-                    style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase();"required>
-            </div>
+        </div>
 
-            <div class="form-group">
-                <label for="renewal_date">Date of Renewal</label>
-                <input type="date" id="renewal_date" name="renewal_date" placeholder="">
-            </div>
-
-            <div class="form-group">
-                <input type="email" id="email" name="email" placeholder="Enter Your E-Mail (optional)">
-            </div>
-
-            <div class="form-group">
-                <!-- <label for="message">Message</label> -->
-                <textarea id="message" name="message" rows="1" placeholder="Write your remark (optional) "></textarea>
-            </div>
-
-            <button class="wishes_button" type="submit" id="submitBtn">Submit</button>
-            <div id="status"></div>
-        </form>
     </div>
-    </div>
 
-    <a href="https://wa.me/9220973200" target="_blank"><div id="chat"></div> </a>
+    <!-- WhatsApp Button -->
+
+    <a href="https://wa.me/919220973200" target="_blank">
+        <div id="chat"></div>
+    </a>
+
+    <!-- ---------------------- SCRIPT -------------------------- -->
 
     <script>
-        // --- JAVASCRIPT LOGIC ---
-        
-        // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyNUo4U803iecllePie6vlfOhjYSs3TC41rXX7qhLdtPYoCli4dmLyGSeVJWoI2VYsw/exec'; 
+
+        // GOOGLE APPS SCRIPT URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyNUo4U803iecllePie6vlfOhjYSs3TC41rXX7qhLdtPYoCli4dmLyGSeVJWoI2VYsw/exec';
 
         const form = document.forms['contactForm'];
         const submitBtn = document.getElementById('submitBtn');
         const statusTxt = document.getElementById('status');
 
         form.addEventListener('submit', e => {
+
             e.preventDefault();
-            
-            // 1. Change button state to loading
+
             submitBtn.disabled = true;
-            submitBtn.innerHTML = "Sending...";
+            submitBtn.innerHTML = "Please Wait...";
             statusTxt.innerHTML = "";
 
-            // 2. Prepare data
             const formData = new FormData(form);
 
-            // 3. Send data to Google Script
-            fetch(scriptURL, { method: 'POST', body: formData})
+            fetch(scriptURL, {
+                method: 'POST',
+                body: formData
+            })
+
                 .then(response => {
-                    // Reset Form
+
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = "Submit Inquiry";
-                    statusTxt.innerHTML = "Thank you! <br> Your details have been submitted.";
+                    submitBtn.innerHTML = "🚀 Get Best Insurance Quote";
+
+                    statusTxt.innerHTML =
+                        "✅ Thank You! Our insurance expert will contact you shortly.";
+
                     statusTxt.className = "success";
+
                     form.reset();
+
                 })
+
                 .catch(error => {
+
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = "Submit Inquiry";
-                    statusTxt.innerHTML = "Error! Something went wrong.";
+                    submitBtn.innerHTML = "🚀 Get Best Insurance Quote";
+
+                    statusTxt.innerHTML =
+                        "❌ Something went wrong. Please try again.";
+
                     statusTxt.className = "error";
+
                     console.error('Error!', error.message);
+
                 });
+
         });
+
     </script>
-    <!-- ----------------------Form End-------------------------- -->
+
+    <!-- ---------------------- FORM END -------------------------- -->
 </body>
 </html>
