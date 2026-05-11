@@ -217,7 +217,7 @@
         <div class="form-container">
 
             <div class="offer-badge">
-                🎉 LIMITED TIME OFFER - SAVE UP TO 40%
+                🎉 LIMITED TIME OFFER - SAVE UP TO 40%*
             </div>
 
             <h2>Renew Vehicle Insurance Instantly</h2>
@@ -235,12 +235,14 @@
             </div>
 
             <form id="contactForm">
-
+            <!-- -----------Referral Details Start----------- -->
                 <div class="form-group">
-                    <select id="referral_code" name="referral_code" required>
-                        <option value="My Self">My Self</option>
-                    </select>
+                    <input type="hidden" id="referral_code" name="referral_code" value="My Self">
                 </div>
+                <div class="form-group">
+                    <input type="hidden" id="referral_email" name="referral_email" value="infofarmerhouse@gmail.com">
+                </div>
+                <!-- -----------Referral Details End----------- -->
 
                 <div class="form-group">
                     <select id="lead_type" name="lead_type" required>
@@ -319,7 +321,8 @@
     <script>
 
         // GOOGLE APPS SCRIPT URL
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyNUo4U803iecllePie6vlfOhjYSs3TC41rXX7qhLdtPYoCli4dmLyGSeVJWoI2VYsw/exec';
+        // const scriptURL = 'https://script.google.com/macros/s/AKfycbyNUo4U803iecllePie6vlfOhjYSs3TC41rXX7qhLdtPYoCli4dmLyGSeVJWoI2VYsw/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbz8ysRQVhcubcAl7I2sqnkfwFwGYRqKEhuC5gySoi9cU5r08Sb06Sl01SR6hwBj8Ayi/exec';
 
         const form = document.forms['contactForm'];
         const submitBtn = document.getElementById('submitBtn');
@@ -373,75 +376,7 @@
     </script>
 
     <!-- ---------------------- FORM END -------------------------- -->
+
 </body>
+
 </html>
-
-
-
-<!-- // --- COPY THIS INTO GOOGLE APPS FOR SAVE ENQUIRY FORM DATA SCRIPT  START------
-function doPost(e) {
-  try {
-
-    // 1. Get Sheet
-    var sheet = SpreadsheetApp
-      .getActiveSpreadsheet()
-      .getSheetByName("Leads");
-
-    // 2. Get Form Data
-    var data = e.parameter;
-    var timestamp = new Date();
-
-    // 3. Save and Append data to the Google Sheet
-    sheet.appendRow([
-      timestamp,
-      data.referral_code,
-      data.lead_type,
-      data.owner_name,
-      data.tel,
-      data.vehicle_no,
-      data.renewal_date,
-      data.email,
-      data.message
-    ]);
-
-    // 4. Email Notification Body
-    var emailBody =
-      "New Lead Received:<br><br>" +
-      "<b>Referral Code:</b> " + data.referral_code + "<br>" +
-      "<b>Lead Type:</b> " + data.lead_type + "<br>" +
-      "<b>Owner Name:</b> " + data.owner_name + "<br>" +
-      "<b>Mobile:</b> " + data.tel + "<br>" +
-      "<b>Vehicle No:</b> " + data.vehicle_no + "<br>" +
-      "<b>Renewal Date:</b> " + data.renewal_date + "<br>" +
-      "<b>Email:</b> " + data.email + "<br>" +
-      "<b>Message:</b> " + data.message;
-
-    // 5. Send Email
-    MailApp.sendEmail({
-      to: "gyanchandmaurya@gmail.com",
-      subject: "New Lead: " + data.owner_name,
-      htmlBody: emailBody
-    });
-
-    // 6. Return Success
-    return ContentService
-      .createTextOutput(JSON.stringify({
-        result: "success"
-      }))
-      .setMimeType(ContentService.MimeType.JSON);
-
-  } catch (error) {
-
-    // Error Log
-    Logger.log(error);
-
-    return ContentService
-      .createTextOutput(JSON.stringify({
-        result: "error",
-        error: error.message
-      }))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-}
-// 1-------GOOGLE APPS FOR SAVE ENQUIRY FORM DATA SCRIPT  START END----------------- -->
-
