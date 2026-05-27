@@ -681,7 +681,291 @@
   </script>
 <!-- --------------------Body End------------------------- -->
 
+<!-- ----------------------Enquiry Solar Site Survey Form Start------------------------ -->
+	<style>
+        /********** Template CSS **********/
+        .wishes_form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;}
+        .form-container {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            max-width: 700px;
+            border: 3px solid #32C36C;
+            position: relative;
+            overflow: hidden;}
+        .offer-badge {
+            background: #ff0000;
+            color: white;
+            padding: 8px 14px;
+            font-size: 13px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 0px;
+            font-weight: bold;
+            animation: blink 1s infinite;}
+        @keyframes blink {
+            50% {
+                opacity: 0.8;}}
+        h2 {
+            text-align: center;
+            color: #0f172a;
+            margin-bottom: 8px;
+            font-size: 28px;}
+        .subtitle {
+            text-align: center;
+            color: #555;
+            font-size: 15px;
+            margin-bottom: 20px;
+            line-height: 1.5;}
+        .highlight {
+            color: #16a34a;
+            font-weight: bold;}
+        .benefits {
+            background: #f0fdf4;
+            border: 1px dashed #22c55e;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            color: #14532d;}
+        .benefits div {
+            margin-bottom: 8px;}
+        .form-group {
+            margin-bottom: 15px;}
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: 0.3s;}
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #32C36C;
+            outline: none;
+            box-shadow: 0 0 5px rgba(50, 195, 108, 0.4);}
+        textarea {
+            resize: vertical;}
+        .wishes_button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #16a34a, #22c55e);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;}
+        .wishes_button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(34, 197, 94, 0.4);}
+        .wishes_button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;}
+        #status {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;}
+        .success {
+            color: green;}
+        .error {
+            color: red;}
+        .trust-text {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #6b7280;}
+        /* #chat {
+            height: 60px;
+            width: 60px;
+            border-radius: 0%;
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            z-index: 1000;
+            background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png");
+            background-size: cover;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);} */
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 24px;}
+            .subtitle {
+                font-size: 14px;}
+            .form-container {
+                padding: 20px;}
+        }
+    </style>
+</head>
 
+<body>
+
+    <!-- ---------------------- FORM START -------------------------- -->
+
+    <div class="wishes_form" id="contactus">
+        <div class="form-container">
+            <!-- <div class="offer-badge">
+                🎉 LIMITED TIME OFFER - SAVE UP TO 40%*
+            </div> -->
+
+            <h2>WELCOME ZERO COST ELECTRICITY</h2>
+<!-- 
+            <p class="subtitle">
+                Compare top insurance companies & get the
+                <span class="highlight">lowest premium quote.</span>
+            </p> -->
+
+            <div class="benefits">
+                <div>✅ Check Eligibility</div>
+                <div>✅ Upload Documents</div>
+                <div>✅ Get Approved</div>
+                <div>✅ System Installation</div>
+            </div>
+
+            <form id="contactForm">
+            <!-- -----------Referral Details Start----------- -->
+                <div class="form-group">
+                    <input type="hidden" id="referral_code" name="referral_code" value="My Self">
+                </div>
+                <div class="form-group">
+                    <input type="hidden" id="referral_email" name="referral_email" value="solarshakti.in@gmail.com">
+                </div>
+            <!-- -----------Referral Details End------------- -->
+
+                <div class="form-group">
+                    <select id="lead_type" name="lead_type" required>
+                        <option value="" disabled selected>Select Property Type*</option>
+                        <option value="School">🏫 School</option>
+                        <option value="Factory">🏭 Factory</option>
+                        <option value="Hospital">🏥 Hospital</option>
+                        <option value="Hotel">🏨 Hotel</option>
+                        <option value="Comemercial Property">🏢 Commercial Property</option>
+                        <option value="Co-Operative Housing Society">🏙 Co-Operative Housing Society</option>
+                        <option value="Other">👉 Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="owner_name" name="owner_name"
+                        placeholder="Enter Full Name*"
+                        oninput="this.value = this.value.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <input type="tel" id="tel" name="tel"
+                        placeholder="Enter 10 Digit Mobile Number*"
+                        pattern="[0-9]{10}" maxlength="10" inputmode="numeric"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,10);"
+                        required>
+                </div>
+
+                <!-- <div class="form-group">
+                    <input type="text" id="vehicle_no" name="vehicle_no"
+                        placeholder="Enter Vehicle Number*"
+                        style="text-transform: uppercase;"
+                        oninput="this.value = this.value.toUpperCase();"
+                        required>
+                </div> -->
+                <div class="form-group">
+                    <input type="text" id="city" name="city"
+                        placeholder="Enter City Name*" 
+                        required>
+                </div>
+
+				<div class="form-group">
+                    <input type="tel" id="pincode" name="pincode"
+                        placeholder="Enter 6 Digit Area PIN Code*"
+                        pattern="[0-9]{6}" maxlength="6" inputmode="numeric"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,6);"
+                        required>
+                </div>
+
+                <!-- <div class="form-group">
+                    <label for="renewal_date">Renewal Date*</label>
+                    <input type="date" id="renewal_date" name="renewal_date" required>
+                </div> -->
+                <div class="form-group">
+                    <select id="monthly_bill" name="monthly_bill" required>
+                        <option value="" disabled selected>Select Monthly Bill*</option>
+                        <option value="5,000 to 50,000">5,000 to 50,000</option>
+                        <option value="50,000 to 1,00,000">50,000 to 1,00,000</option>
+                        <option value="Above 1,00,000">Above 1,00,000</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" id="email" name="email"
+                        placeholder="Enter Email Address (Optional)">
+                </div>
+
+                <div class="form-group">
+                    <textarea id="message" name="message" rows="2"
+                        placeholder="Any special requirement? (Optional)"></textarea>
+                </div>
+
+                <button class="wishes_button" type="submit" id="submitBtn">
+                    Submit
+                </button>
+
+                <div id="status"></div>
+
+            </form>
+
+            <div class="trust-text">
+                🔒 Your details are 100% safe & secure
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // GOOGLE APPS SCRIPT URL---------------------------
+		const scriptURL = 'https://script.google.com/macros/s/AKfycbwDezdJIoB7jXGPHgAwkW6_dfyPqWkPAxW-p2Md-UvuPqauHRG03O7SU2AC-3BAKbU/exec';
+
+        const form = document.forms['contactForm'];
+        const submitBtn = document.getElementById('submitBtn');
+        const statusTxt = document.getElementById('status');
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "Please Wait...";
+            statusTxt.innerHTML = "";
+            const formData = new FormData(form);
+            fetch(scriptURL, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = "🚀 Get Best Insurance Quote";
+                    statusTxt.innerHTML =
+                        "✅ Thank You! Our expert will contact you shortly.";
+                    statusTxt.className = "success";
+                    form.reset();
+                })
+                .catch(error => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = "🚀 Get Best Insurance Quote";
+                    statusTxt.innerHTML =
+                        "❌ Something went wrong. Please try again.";
+                    statusTxt.className = "error";
+                    console.error('Error!', error.message);
+                });
+        });
+    </script>    
+    <!-- ----------------------Enquiry Solar Site Survey Form End------------------------ -->
 
 
     <!-- Footer Start -->
