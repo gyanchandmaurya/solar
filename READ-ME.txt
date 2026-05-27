@@ -1,5 +1,0 @@
-  =>  Template Name    : Solar Shakti - Renewable Energy Website
-
-  =>  Template Author  : HTML & CSS
-
-  =>  Author Website   : https://solarshakti.in
